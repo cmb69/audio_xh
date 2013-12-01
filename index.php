@@ -42,18 +42,18 @@ function Audio_folder()
 /**
  * Returns an AUDIO element.
  *
- * @param string $player      A relative path to the SWF player.
- * @param string $filename    A relative path of the MP3 file.
- * @param string $displayname A name of the MP3 file.
+ * @param string $filename    A relative path of an MP3 file.
+ * @param string $player      A relative path to an SWF player.
  *
  * @return string (X)HTML.
  *
  * @global array The configuration of the core.
  */
-function Audio_html($player, $filename, $displayname)
+function Audio_html($filename, $player)
 {
     global $cf;
     
+    $displayname = basename($filename);
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
@@ -86,9 +86,8 @@ function audio($filename)
     
     $path = Audio_folder() . $filename;
     if (file_exists($path)) {
-        $displayname = basename($filename);
         $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-        return Audio_html($player, $path, $displayname);
+        return Audio_html($path, $player);
     } else {
         e('missing', 'file', $path);
         return false;
