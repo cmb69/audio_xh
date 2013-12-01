@@ -1,5 +1,38 @@
 <?php
 
+/**
+ * Front-end of Audio_XH.
+ *
+ * PHP versions 4 and 5
+ *
+ * @category  CMSimple_XH
+ * @package   Audio
+ * @author    Christoph M. Becker <cmbecker69@gmx.de>
+ * @copyright 2013 Christoph M. Becker <http://3-magi.net>
+ * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
+ * @version   SVN: $Id$
+ * @link      http://3-magi.net/?CMSimple_XH/Audio_XH
+ */
+
+/*
+ * Prevent direct access.
+ */
+if (!defined('CMSIMPLE_XH_VERSION')) {
+    header('HTTP/1.0 403 Forbidden');
+    exit;
+}
+
+/**
+ * Returns an AUDIO element.
+ *
+ * @param string $player      A relative path to the SWF player.
+ * @param string $filename    A relative path of the MP3 file.
+ * @param string $displayname A name of the MP3 file.
+ *
+ * @return string (X)HTML.
+ *
+ * @global array The configuration of the core.
+ */
 function Audio_html($player, $filename, $displayname)
 {
     global $cf;
@@ -23,6 +56,13 @@ HTML;
     return $o;
 }
 
+/**
+ * Returns an AUDIO element.
+ * 
+ * @param string $filename
+ *
+ * @return string (X)HTML.
+ */
 function audio($filename)
 {
     global $pth;
@@ -37,3 +77,5 @@ function audio($filename)
         return false;
     }
 }
+
+?>
