@@ -40,19 +40,33 @@ function Audio_folder()
 }
 
 /**
+ * Returns an (X)HTML string with all empty XHTML elements converted to empty
+ * HTML elements.
+ *
+ * @param string $html An HTML string.
+ *
+ * @global array The configuration of the core.
+ */
+function Audio_fixEmptyElements($html)
+{
+    global $cf;
+    
+    if (!$cf['xhtml']['endtags']) {
+        $html = str_replace('/>', '>', $html);
+    }
+    return $html;
+}
+
+/**
  * Returns an AUDIO element.
  *
  * @param string $filename    A relative path of an MP3 file.
  * @param string $player      A relative path to an SWF player.
  *
  * @return string (X)HTML.
- *
- * @global array The configuration of the core.
  */
 function Audio_html($filename, $player)
 {
-    global $cf;
-    
     $displayname = basename($filename);
     $o = <<<HTML
 
@@ -67,9 +81,8 @@ function Audio_html($filename, $player)
 </audio>
 
 HTML;
-    if (!$cf['xhtml']['endtags']) {
-        $o = str_replace('/>', '>', $o);
-    }
+
+    $o = Audio_fixEmptyElements($o);
     return $o;
 }
 
