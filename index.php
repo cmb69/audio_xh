@@ -23,6 +23,23 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 /**
+ * Returns the path of the audio folder.
+ *
+ * @return string
+ *
+ * @global array The paths of system files and folders.
+ */
+function Audio_folder()
+{
+    global $pth;
+    
+    $folder = isset($pth['folder']['media'])
+        ? $pth['folder']['media']
+        : $pth['folder']['downloads'];
+    return $folder;
+}
+
+/**
  * Returns an AUDIO element.
  *
  * @param string $player      A relative path to the SWF player.
@@ -67,7 +84,7 @@ function audio($filename)
 {
     global $pth;
     
-    $path = $pth['folder']['media'] . $filename;
+    $path = Audio_folder() . $filename;
     if (file_exists($path)) {
         $displayname = basename($filename);
         $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
