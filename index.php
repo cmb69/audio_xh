@@ -28,7 +28,12 @@ function audio($filename)
     global $pth;
     
     $path = $pth['folder']['media'] . $filename;
-    $displayname = basename($filename);
-    $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-    return Audio_html($player, $path, $displayname);
+    if (file_exists($path)) {
+        $displayname = basename($filename);
+        $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
+        return Audio_html($player, $path, $displayname);
+    } else {
+        e('missing', 'file', $path);
+        return false;
+    }
 }
