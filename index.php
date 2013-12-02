@@ -70,6 +70,7 @@ function Audio_fixEmptyElements($html)
 function Audio_html($filename, $player)
 {
     $displayname = basename($filename);
+    $urlencodedFilename = urlencode($filename);
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
@@ -77,7 +78,7 @@ function Audio_html($filename, $player)
     <object type="application/x-shockwave-flash" data="$player"
             width="140" height="30">
         <param name="movie" value="$player"/>
-        <param name="FlashVars" value="src=$filename"/>
+        <param name="FlashVars" value="src=$urlencodedFilename"/>
         <a href="$filename">$displayname</a>
     </object>
 </audio>
