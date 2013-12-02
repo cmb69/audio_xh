@@ -45,6 +45,8 @@ function Audio_folder()
  *
  * @param string $html An HTML string.
  *
+ * @return string (X)HTML.
+ *
  * @global array The configuration of the core.
  */
 function Audio_fixEmptyElements($html)
@@ -60,8 +62,8 @@ function Audio_fixEmptyElements($html)
 /**
  * Returns an AUDIO element.
  *
- * @param string $filename    A relative path of an MP3 file.
- * @param string $player      A relative path to an SWF player.
+ * @param string $filename A relative path of an MP3 file.
+ * @param string $player   A relative path to an SWF player.
  *
  * @return string (X)HTML.
  */
@@ -89,7 +91,7 @@ HTML;
 /**
  * Returns an AUDIO element.
  * 
- * @param string $filename
+ * @param string $filename An audio filename.
  *
  * @return string (X)HTML.
  */
