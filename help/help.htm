@@ -12,7 +12,11 @@
 <h1>Audio_XH &ndash; a CMSimple_XH Plugin</h1>
 <img src="../audio.png" style="float: left; margin-right: 16px"
 alt="Plugin icon">
-<p style="text-align:justify">TODO</p>
+<p style="text-align:justify">Audio_XH facilitates the presentation of MP3 audio players on a CMSimple_XH
+website. If the visitor's browser supports the AUDIO element, the plugin uses
+this feature, and falls back to a simple Flash player otherwise. If not even
+Flash is available, a link to the MP3 file is offered. JavaScript is not
+required.</p>
 
 <ul id="nav">
 <li><a href="#notice">Important Notice</a></li>
@@ -68,7 +72,15 @@ plugins directory.</li>
 <!--<div class="toplink"><a href="#">back to top</a></div>-->
 
 <h2 id="usage">Usage</h2>
-TODO
+<p>To present an MP3 audio player on a page, just insert the following plugin
+call:</p>
+<pre>{{{PLUGIN:audio('FILENAME.mp3');}}}</pre>
+<p>FILENAME has to be a path relative to the configured media folder, so to
+play music.mp3 from the media folder, use:</p>
+<pre>{{{PLUGIN:audio('music.mp3');}}}</pre>
+<p>To present an MP3 audio player on all pages, just insert the following in
+your template:</p>
+<pre>&lt;?php echo audio('FILENAME.mp3');?&gt;</pre>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <!--<h2 id="limitations">Limitations</h2>-->
@@ -83,6 +95,7 @@ href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <h2 id="credits">Credits</h2>
+<p>This plugin was inspired by jop.</p>
 <p>Audio_XH uses <a href="http://emff.sourceforge.net/">Easy Musicplayer For
 Flash</a>. Many thanks to Marc Reichelt for publishing this MP3 flash player
 under GPL.</p>
