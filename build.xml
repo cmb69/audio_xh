@@ -52,7 +52,7 @@
         <move todir="dist">
             <fileset dir="export">
                 <include name="index.php"/>
-                <!--<include name="version.nfo"/>-->
+                <include name="version.nfo"/>
             </fileset>
             <filterchain>
                 <replacetokens>
