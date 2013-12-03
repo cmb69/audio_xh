@@ -62,7 +62,7 @@ function Audio_fixEmptyElements($html)
 /**
  * Returns an AUDIO element.
  *
- * @param string $filename A relative path of an MP3 file.
+ * @param string $filename A relative path of an audio file (without file extension).
  * @param string $player   A relative path to an SWF player.
  *
  * @return string (X)HTML.
@@ -74,7 +74,9 @@ function Audio_html($filename, $player)
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
-<audio src="$filename" controls="controls" title="$displayname">
+<audio controls="controls" title="$displayname">
+    <source src="$filename.oga" type="audio/ogg"/>
+    <source src="$filename.mp3" type="audio/mpeg"/>
     <object type="application/x-shockwave-flash" data="$player"
             width="140" height="30">
         <param name="movie" value="$player"/>
@@ -92,7 +94,7 @@ HTML;
 /**
  * Returns an AUDIO element.
  * 
- * @param string $filename An audio filename.
+ * @param string $filename An audio filename without file extension.
  *
  * @return string (X)HTML.
  */
@@ -101,13 +103,16 @@ function audio($filename)
     global $pth;
     
     $path = Audio_folder() . $filename;
-    if (file_exists($path)) {
-        $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-        return Audio_html($path, $player);
-    } else {
-        e('missing', 'file', $path);
-        return false;
+    $extensions = array('.oga', '.mp3');
+    foreach ($extensions as $extension) {
+        $filename = $path . $extension;
+        if (!file_exists($filename)) {
+            e('missing', 'file', $filename);
+            return false;
+        }
     }
+    $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
+    return Audio_html($path, $player);
 }
 
 ?>
