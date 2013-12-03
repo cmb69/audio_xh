@@ -81,7 +81,7 @@ function Audio_html($filename, $player)
             width="140" height="30">
         <param name="movie" value="$player"/>
         <param name="FlashVars" value="src=$urlencodedFilename"/>
-        <a href="$filename">$displayname</a>
+        <a href="$filename.mp3">$displayname</a>
     </object>
 </audio>
 
