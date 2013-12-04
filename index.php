@@ -70,7 +70,7 @@ function Audio_fixEmptyElements($html)
 function Audio_html($filename, $player)
 {
     $displayname = basename($filename);
-    $urlencodedFilename = urlencode($filename);
+    $urlencodedFilename = urlencode($filename . '.mp3');
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
