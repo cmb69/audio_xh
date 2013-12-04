@@ -12,11 +12,12 @@
 <h1>Audio_XH &ndash; a CMSimple_XH Plugin</h1>
 <img src="../audio.png" style="float: left; margin-right: 16px"
 alt="Plugin icon">
-<p style="text-align:justify">Audio_XH facilitates the presentation of MP3 audio players on a CMSimple_XH
-website. If the visitor's browser supports the AUDIO element, the plugin uses
-this feature, and falls back to a simple Flash player otherwise. If not even
-Flash is available, a link to the MP3 file is offered. JavaScript is not
-required.</p>
+<p style="text-align:justify">Audio_XH facilitates the presentation of audio
+players on a CMSimple_XH website. You have to provide an MP3 and an Ogg Vorbis
+file for each player. If the visitor's browser supports the AUDIO element, the
+plugin uses this feature, and falls back to a simple Flash player otherwise. If
+not even Flash is available, a link to the MP3 file is offered. JavaScript is
+not required.</p>
 
 <ul id="nav">
 <li><a href="#notice">Important Notice</a></li>
@@ -72,15 +73,24 @@ plugins directory.</li>
 <!--<div class="toplink"><a href="#">back to top</a></div>-->
 
 <h2 id="usage">Usage</h2>
-<p>To present an MP3 audio player on a page, just insert the following plugin
+<p>As Audio_XH provides no such facility, you have to upload your audio files to
+the configured media folder via FTP, the file browser or <a
+href="http://3-magi.net/?CMSimple_XH/Uploader_XH">Uploader_XH</a>. Each audio
+file has to be uploaded as MP3 (.mp3) <i>and</i> an Ogg Vorbis (.oga) version;
+both files have to be in the same folder and have the same name. To convert an
+audio file to the required formats, you can use <a
+href="http://3-magi.net/?CMSimple_XH/encode4web">encode4web</a>.</p>
+<p>To present an audio player on a page, just insert the following plugin
 call:</p>
-<pre>{{{PLUGIN:audio('FILENAME.mp3');}}}</pre>
-<p>FILENAME has to be a path relative to the configured media folder, so to
-play music.mp3 from the media folder, use:</p>
-<pre>{{{PLUGIN:audio('music.mp3');}}}</pre>
-<p>To present an MP3 audio player on all pages, just insert the following in
-your template:</p>
-<pre>&lt;?php echo audio('FILENAME.mp3');?&gt;</pre>
+<pre>{{{PLUGIN:audio('FILENAME');}}}</pre>
+<p>FILENAME has to be a file path (without file extension) relative to the
+configured media folder.</p> 
+<p>For example, if you have music.mp3 and music.oga directly in the media
+folder, use:</p>
+<pre>{{{PLUGIN:audio('music');}}}</pre>
+<p>To present an audio player on all pages, just insert the following in your
+template:</p>
+<pre>&lt;?php echo audio('FILENAME');?&gt;</pre>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <!--<h2 id="limitations">Limitations</h2>-->
@@ -105,10 +115,9 @@ this icon under GPL.</p>
 <!--<p>This plugin uses free applications icons from <a-->
 <!--href="http://www.aha-soft.com/">Aha-Soft</a>. Many thanks for making these icons-->
 <!--freely available.</p>-->
-<!--<p>Many thanks to the community at the <a-->
-<!--href="http://cmsimpleforum.com/">CMSimple_XH forum</a> for tips, suggestions and-->
-<!--testing. Especially I want to thank Korvell for pushing 1beta5 just in time-->
-<!--before December 2013.</p>-->
+<p>Many thanks to the community at the <a
+href="http://cmsimpleforum.com/">CMSimple_XH forum</a> for tips, suggestions and
+testing. Especially I want to thank Ulrich for the early feedback.</p>
 <p>And last but not least many thanks to <a href="http://www.harteg.dk/">Peter
 Harteg</a>, the "father" of CMSimple, and all developers of <a
 href="http://www.cmsimple-xh.org">CMSimple_XH</a> without whom this amazing CMS
