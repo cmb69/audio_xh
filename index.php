@@ -75,7 +75,7 @@ function Audio_html($filename, $player)
 
 <!-- Audio_XH: $displayname -->
 <audio controls="controls" title="$displayname">
-    <source src="$filename.oga" type="audio/ogg"/>
+    <source src="$filename.ogg" type="audio/ogg"/>
     <source src="$filename.mp3" type="audio/mpeg"/>
     <object type="application/x-shockwave-flash" data="$player"
             width="140" height="30">
@@ -103,7 +103,7 @@ function audio($filename)
     global $pth;
     
     $path = Audio_folder() . $filename;
-    $extensions = array('.oga', '.mp3');
+    $extensions = array('.ogg', '.mp3');
     foreach ($extensions as $extension) {
         $filename = $path . $extension;
         if (!file_exists($filename)) {
