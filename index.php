@@ -32,7 +32,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 function Audio_folder()
 {
     global $pth;
-    
+
     $folder = isset($pth['folder']['media'])
         ? $pth['folder']['media']
         : $pth['folder']['downloads'];
@@ -52,7 +52,7 @@ function Audio_folder()
 function Audio_fixEmptyElements($html)
 {
     global $cf;
-    
+
     if (!$cf['xhtml']['endtags']) {
         $html = str_replace('/>', '>', $html);
     }
@@ -64,23 +64,26 @@ function Audio_fixEmptyElements($html)
  *
  * @param string $filename A relative path of an audio file (without file extension).
  * @param string $player   A relative path to an SWF player.
+ * @param bool   $autoplay Whether playback shall start automatically.
  *
  * @return string (X)HTML.
  */
-function Audio_html($filename, $player)
+function Audio_html($filename, $player, $autoplay)
 {
     $displayname = basename($filename);
     $urlencodedFilename = urlencode($filename . '.mp3');
+    $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
+    $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
-<audio controls="controls" title="$displayname">
+<audio controls="controls" title="$displayname" $html5autoplay>
     <source src="$filename.ogg" type="audio/ogg"/>
     <source src="$filename.mp3" type="audio/mpeg"/>
     <object type="application/x-shockwave-flash" data="$player"
             width="140" height="30">
         <param name="movie" value="$player"/>
-        <param name="FlashVars" value="src=$urlencodedFilename"/>
+        <param name="FlashVars" value="src=$urlencodedFilename$flashautoplay"/>
         <a href="$filename.mp3">$displayname</a>
     </object>
 </audio>
@@ -93,15 +96,16 @@ HTML;
 
 /**
  * Returns an AUDIO element.
- * 
+ *
  * @param string $filename An audio filename without file extension.
+ * @param bool   $autoplay Whether playback shall start automatically.
  *
  * @return string (X)HTML.
  */
-function audio($filename)
+function audio($filename, $autoplay = false)
 {
     global $pth;
-    
+
     $path = Audio_folder() . $filename;
     $extensions = array('.ogg', '.mp3');
     foreach ($extensions as $extension) {
@@ -112,7 +116,7 @@ function audio($filename)
         }
     }
     $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-    return Audio_html($path, $player);
+    return Audio_html($path, $player, $autoplay);
 }
 
 ?>

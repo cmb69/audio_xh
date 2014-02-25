@@ -76,7 +76,7 @@ plugins directory.</li>
 <p>As Audio_XH provides no such facility, you have to upload your audio files to
 the configured media folder via FTP, the file browser or <a
 href="http://3-magi.net/?CMSimple_XH/Uploader_XH">Uploader_XH</a>. Each audio
-file has to be uploaded as MP3 (.mp3) <i>and</i> an Ogg Vorbis (.oga) version;
+file has to be uploaded as MP3 (.mp3) <i>and</i> an Ogg Vorbis (.ogg) version;
 both files have to be in the same folder and have the same name. To convert an
 audio file to the required formats, you can use <a
 href="http://3-magi.net/?CMSimple_XH/encode4web">encode4web</a>.</p>
@@ -84,13 +84,17 @@ href="http://3-magi.net/?CMSimple_XH/encode4web">encode4web</a>.</p>
 call:</p>
 <pre>{{{PLUGIN:audio('FILENAME');}}}</pre>
 <p>FILENAME has to be a file path (without file extension) relative to the
-configured media folder.</p> 
-<p>For example, if you have music.mp3 and music.oga directly in the media
+configured media folder.</p>
+<p>For example, if you have music.mp3 and music.ogg directly in the media
 folder, use:</p>
 <pre>{{{PLUGIN:audio('music');}}}</pre>
 <p>To present an audio player on all pages, just insert the following in your
 template:</p>
 <pre>&lt;?php echo audio('FILENAME');?&gt;</pre>
+<p>Autoplay wil be activated by adding a second argument 1 in the call:</p>
+<pre>. . . audio('FILENAME', 1); . . .</pre>
+<p>Note, that it's possible to have multiple audio players with autoplay enabled
+on a single page, but it's usually not desired by your visitors.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <!--<h2 id="limitations">Limitations</h2>-->

@@ -79,7 +79,7 @@ Plugin-Verzeichnis hoch.</li>
 <p>Da Audio_XH keine solche Möglichkeit anbietet, müssen Sie Ihre Audio-Dateien
 in den konfigurierten Media-Ordner per FTP, dem Filebrowser oder <a
 href="http://3-magi.net/?CMSimple_XH/Uploader_XH">Uploader_XH</a> hoch laden.
-Jede Audiodatei muss als MP3 (.mp3) <i>und</i> als Ogg Vorbis (.oga) Version
+Jede Audiodatei muss als MP3 (.mp3) <i>und</i> als Ogg Vorbis (.ogg) Version
 hoch geladen werden; beide Dateien müssen im selben Ordner sein und den selben
 Namen haben. Um eine Audiodatei in die benötigten Formate zu konvertieren,
 können Sie <a href="http://3-magi.net/de/?CMSimple_XH/encode4web">encode4web</a>
@@ -89,12 +89,18 @@ folgenden Pluginaufruf ein:</p>
 <pre>{{{PLUGIN:audio('DATEINAME');}}}</pre>
 <p>DATEINAME muss ein Dateipfad (ohne Dateieerweiterung) relativ zum
 konfigurierten Media Ordner sein.</p>
-<p>Wenn Sie also zum Beispiel musik.mp3 und musik.oga direkt im Media-Ordner
+<p>Wenn Sie also zum Beispiel musik.mp3 und musik.ogg direkt im Media-Ordner
 abgelegt haben, verwenden Sie:</p>
 <pre>{{{PLUGIN:audio('musik');}}}</pre>
 <p>Um einen Audio-Player auf allen Seiten darzustellen, fügen Sie einfach
 folgendes in Ihr Template ein:</p>
 <pre>&lt;?php echo audio('DATEINAME');?&gt;</pre>
+<p>Die automatische Wiedergabe ("Autoplay") wird durch Hinzufügen des Arguments 1
+zum Aufruf aktiviert:</p>
+<pre> . . . audio('DATEINAME', 1); . . .</pre>
+<p>Beachten Sie, dass es möglich ist mehrere Audio-Player mit aktiviertem
+Autoplay auf einer Seite einzubinden, aber dass das i.d.R. nicht wünschenswert
+ist.</p>
 <div class="toplink"><a href="#">zum Seitenanfang</a></div>
 
 <!--<h2 id="limitations">Einschränkungen</h2>-->
