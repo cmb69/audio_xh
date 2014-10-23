@@ -91,8 +91,13 @@ folder, use:</p>
 <p>To present an audio player on all pages, just insert the following in your
 template:</p>
 <pre>&lt;?php echo audio('FILENAME');?&gt;</pre>
-<p>Autoplay wil be activated by adding a second argument 1 in the call:</p>
+<p>Autoplay will be activated by adding a second argument 1 in the call:</p>
 <pre>. . . audio('FILENAME', 1); . . .</pre>
+<p>Automatic repeat is activated by adding a third argument 1 in the call, e.g. with autoplay:</p>
+<pre> . . . audio('FILENAME', 1, 1); . . .</pre>
+<p>or without autoplay:</p>
+<pre> . . . audio('FILENAME', 0, 1); . . .</pre>
+
 <p>Note, that it's possible to have multiple audio players with autoplay enabled
 on a single page, but it's usually not desired by your visitors.</p>
 <div class="toplink"><a href="#">back to top</a></div>

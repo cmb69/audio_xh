@@ -98,6 +98,11 @@ folgendes in Ihr Template ein:</p>
 <p>Die automatische Wiedergabe ("Autoplay") wird durch Hinzufügen des Arguments 1
 zum Aufruf aktiviert:</p>
 <pre> . . . audio('DATEINAME', 1); . . .</pre>
+<p>Die Wiedergabe als Endlosschleife ("Loop") wird durch Hinzufügen eines weiteren Arguments 1
+zum Aufruf aktiviert, z.B. mit Autoplay:</p>
+<pre> . . . audio('DATEINAME', 1, 1); . . .</pre>
+<p>oder ohne Autoplay:</p>
+<pre> . . . audio('DATEINAME', 0, 1); . . .</pre>
 <p>Beachten Sie, dass es möglich ist mehrere Audio-Player mit aktiviertem
 Autoplay auf einer Seite einzubinden, aber dass das i.d.R. nicht wünschenswert
 ist.</p>

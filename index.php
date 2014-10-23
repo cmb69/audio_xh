@@ -65,15 +65,18 @@ function Audio_fixEmptyElements($html)
  * @param string $filename A relative path of an audio file (without file extension).
  * @param string $player   A relative path to an SWF player.
  * @param bool   $autoplay Whether playback shall start automatically.
+ * @param bool   $loop Whether playback shall be repeated automatically.
  *
  * @return string (X)HTML.
  */
-function Audio_html($filename, $player, $autoplay)
+function Audio_html($filename, $player, $autoplay, $loop)
 {
     $displayname = basename($filename);
     $urlencodedFilename = urlencode($filename . '.mp3');
     $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
+    $html5autoplay .= $loop? ' loop="loop"' : '';
     $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
+    $flashautoplay .= $loop? '&amp;repeat=yes' : '';
     $o = <<<HTML
 
 <!-- Audio_XH: $displayname -->
@@ -99,10 +102,11 @@ HTML;
  *
  * @param string $filename An audio filename without file extension.
  * @param bool   $autoplay Whether playback shall start automatically.
+ * @param bool   $loop     Whether playback shall be repeated automatically.
  *
  * @return string (X)HTML.
  */
-function audio($filename, $autoplay = false)
+function audio($filename, $autoplay = false, $loop = false)
 {
     global $pth;
 
@@ -116,7 +120,7 @@ function audio($filename, $autoplay = false)
         }
     }
     $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-    return Audio_html($path, $player, $autoplay);
+    return Audio_html($path, $player, $autoplay, $loop);
 }
 
 ?>
