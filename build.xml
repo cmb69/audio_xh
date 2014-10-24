@@ -72,7 +72,9 @@
             <fileset dir="export">
                 <exclude name="audio.komodoproject"/>
                 <exclude name="build.xml"/>
-                <exclude name="phpcompatinfo.xml"/>
+                <exclude name="composer.*"/>
+                <exclude name="phpcompatinfo.*"/>
+                <exclude name="TODO"/>
             </fileset>
         </move>
         <delete dir="export"/>
