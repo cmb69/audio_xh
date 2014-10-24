@@ -10,7 +10,8 @@
 
     <excludes>
         <exclude id="audio">
-            <directory name="help"/>
+            <directory name="tests"/>
+            <directory name="vendor"/>
         </exclude>
     </excludes>
 </phpcompatinfo>

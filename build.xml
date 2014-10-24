@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- $Id$ -->
-
-<project name="Audio" default="default">
-
-    <!-- Filesets -->
+<project name="Audio" default="help">
 
     <fileset id="php-sources" dir=".">
-        <!--<include name="admin.php"/>-->
         <include name="index.php"/>
     </fileset>
 
-    <!-- Checks -->
+    <fileset id="js-sources" dir=".">
+        <include name="*.js"/>
+    </fileset>
 
-    <target name="sniff">
+    <target name="help" description="lists available targets">
+        <exec command="phing -l" outputProperty="help"/>
+        <echo>${help}</echo>
+    </target>
+
+    <target name="sniff" description="checks adherence to PEAR CS">
         <phpcodesniffer standard="PEAR">
             <fileset refid="php-sources"/>
         </phpcodesniffer>
     </target>
 
-    <target name="compat">
-        <exec command="phpcompatinfo --configuration phpcompatinfo.xml print --exclude-pattern audio ."
+    <target name="compat2" description="checks compatibility with PHP_CompatInfo 2">
+        <exec command="C:\xampp\php\phpcompatinfo --configuration phpcompatinfo.xml print --exclude-pattern audio ."
               logoutput="true"/>
     </target>
 
-    <!-- Documentation -->
+    <target name="compat" description="checks compatibility with PHP_CompatInfo 3">
+        <exec command="phpcompatinfo analyser:run ." logoutput="true"/>
+    </target>
 
     <target name="php-doc">
         <phpdoc title="Audio_XH Developer Documentation" destdir="doc/php"
-                output="HTML:frames:default" defaultpackagename="Audio"
+                output="HTML:Smarty:HandS" defaultpackagename="Audio"
                 defaultcategoryname="CMSimple_XH">
             <fileset refid="php-sources"/>
             <projdocfileset dir=".">
@@ -38,15 +42,19 @@
         </phpdoc>
     </target>
 
-<!--    <target name="js-doc">
-        <exec command="jsdoc -destination doc/js pagemanager.js" checkreturn="true"/>
+    <target name="js-doc">
+        <apply executable="jsdoc" parallel="true" checkreturn="true">
+            <arg value="-d"/>
+            <arg value="doc/js"/>
+            <arg value="-p"/>
+            <fileset refid="js-sources"/>
+        </apply>
     </target>
--->
-    <target name="doc" depends="php-doc"/>
 
-    <!-- Build -->
+    <target name="doc" depends="php-doc, js-doc"
+            description="generates the developer documentation"/>
 
-    <target name="build">
+    <target name="build" description="builds a distributable ZIP archive">
         <fail unless="version" message="version is not defined!"/>
         <svnexport revision="" repositoryurl="." todir="export"/>
         <move todir="dist">

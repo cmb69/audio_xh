@@ -65,7 +65,7 @@ function Audio_fixEmptyElements($html)
  * @param string $filename A relative path of an audio file (without file extension).
  * @param string $player   A relative path to an SWF player.
  * @param bool   $autoplay Whether playback shall start automatically.
- * @param bool   $loop Whether playback shall be repeated automatically.
+ * @param bool   $loop     Whether playback shall be repeated automatically.
  *
  * @return string (X)HTML.
  */
