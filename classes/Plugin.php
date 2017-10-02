@@ -24,26 +24,6 @@ namespace Audio;
 class Plugin
 {
     /**
-    * Returns an (X)HTML string with all empty XHTML elements converted to empty
-    * HTML elements.
-    *
-    * @param string $html An HTML string.
-    *
-    * @return string (X)HTML.
-    *
-    * @global array The configuration of the core.
-    */
-    private static function fixEmptyElements($html)
-    {
-        global $cf;
-
-        if (!$cf['xhtml']['endtags']) {
-            $html = str_replace('/>', '>', $html);
-        }
-        return $html;
-    }
-
-    /**
     * Returns an AUDIO element.
     *
     * @param string $filename A relative path of an audio file (without file extension).
@@ -59,19 +39,16 @@ class Plugin
         $html5autoplay .= $loop? ' loop="loop"' : '';
         $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
         $flashautoplay .= $loop? '&amp;repeat=yes' : '';
-        $o = <<<HTML
+        return <<<HTML
 
     <!-- Audio_XH: $displayname -->
     <audio controls="controls" title="$displayname" $html5autoplay>
-        <source src="$filename.ogg" type="audio/ogg"/>
-        <source src="$filename.mp3" type="audio/mpeg"/>
+        <source src="$filename.ogg" type="audio/ogg">
+        <source src="$filename.mp3" type="audio/mpeg">
         <a href="$filename.mp3">$displayname</a>
     </audio>
 
 HTML;
-
-        $o = self::fixEmptyElements($o);
-        return $o;
     }
 
     /**
