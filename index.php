@@ -35,4 +35,4 @@ function audio($filename, $autoplay = false, $loop = false)
     return ob_get_clean();
 }
 
-Audio\Plugin::run();
+(new Audio\Plugin)->run();

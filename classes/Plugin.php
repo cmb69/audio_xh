@@ -28,12 +28,12 @@ class Plugin
     /**
      * @return void
      */
-    public static function run()
+    public function run()
     {
         if (XH_ADM) {
             XH_registerStandardPluginMenuItems(false);
             if (XH_wantsPluginAdministration('audio')) {
-                self::handleAdministration();
+                $this->handleAdministration();
             }
         }
     }
@@ -41,7 +41,7 @@ class Plugin
     /**
      * @return void
      */
-    private static function handleAdministration()
+    private function handleAdministration()
     {
         global $o, $admin, $action, $pth;
 
