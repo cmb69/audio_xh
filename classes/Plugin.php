@@ -61,19 +61,12 @@ class Plugin
     */
     private static function html($filename, $autoplay, $loop)
     {
-        $displayname = basename($filename);
-        $html5autoplay = $autoplay? 'autoplay' : '';
-        $html5autoplay .= $loop? ' loop' : '';
-        return <<<HTML
-
-    <!-- Audio_XH: $displayname -->
-    <audio controls="controls" title="$displayname" $html5autoplay>
-        <source src="$filename.ogg" type="audio/ogg">
-        <source src="$filename.mp3" type="audio/mpeg">
-        <a href="$filename.mp3">$displayname</a>
-    </audio>
-
-HTML;
+        $view = new View('audio');
+        $view->filename = $filename;
+        $view->displayname = basename($filename);
+        $view->autoplay = $autoplay ? 'autoplay' : '';
+        $view->loop = $loop ? ' loop' : '';
+        return (string) $view;
     }
 
     /**
