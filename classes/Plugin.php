@@ -64,8 +64,6 @@ class Plugin
         $displayname = basename($filename);
         $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
         $html5autoplay .= $loop? ' loop="loop"' : '';
-        $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
-        $flashautoplay .= $loop? '&amp;repeat=yes' : '';
         return <<<HTML
 
     <!-- Audio_XH: $displayname -->
