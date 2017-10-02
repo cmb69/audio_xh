@@ -52,6 +52,7 @@ class Plugin
                 $view->logo = "{$pth['folder']['plugins']}audio/audio.png";
                 $view->version = self::VERSION;
                 $o .= $view;
+                break;
             default:
                 $o .= plugin_admin_common($action, $admin, 'audio');
         }
