@@ -62,8 +62,8 @@ class Plugin
     private static function html($filename, $autoplay, $loop)
     {
         $displayname = basename($filename);
-        $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
-        $html5autoplay .= $loop? ' loop="loop"' : '';
+        $html5autoplay = $autoplay? 'autoplay' : '';
+        $html5autoplay .= $loop? ' loop' : '';
         return <<<HTML
 
     <!-- Audio_XH: $displayname -->
