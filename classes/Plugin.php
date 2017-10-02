@@ -23,6 +23,8 @@ namespace Audio;
 
 class Plugin
 {
+    const VERSION = '@AUDIO_VERSION@';
+
     /**
      * @return void
      */
@@ -41,10 +43,15 @@ class Plugin
      */
     private static function handleAdministration()
     {
-        global $o, $admin, $action;
+        global $o, $admin, $action, $pth;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
+            case '':
+                $view = new View('info');
+                $view->logo = "{$pth['folder']['plugins']}audio/audio.png";
+                $view->version = self::VERSION;
+                $o .= $view;
             default:
                 $o .= plugin_admin_common($action, $admin, 'audio');
         }
