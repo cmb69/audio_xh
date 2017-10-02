@@ -19,23 +19,6 @@ namespace Audio;
 class Plugin
 {
     /**
-    * Returns the path of the audio folder.
-    *
-    * @return string
-    *
-    * @global array The paths of system files and folders.
-    */
-    private static function folder()
-    {
-        global $pth;
-
-        $folder = isset($pth['folder']['media'])
-            ? $pth['folder']['media']
-            : $pth['folder']['downloads'];
-        return $folder;
-    }
-
-    /**
     * Returns an (X)HTML string with all empty XHTML elements converted to empty
     * HTML elements.
     *
@@ -97,7 +80,9 @@ HTML;
     */
     public static function audio($filename, $autoplay = false, $loop = false)
     {
-        $path = self::folder() . $filename;
+        global $pth;
+
+        $path = "{$pth['folder']['media']}$filename";
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
             $filename = $path . $extension;
