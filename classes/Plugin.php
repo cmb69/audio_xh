@@ -62,15 +62,14 @@ HTML;
     */
     public static function audio($filename, $autoplay = false, $loop = false)
     {
-        global $pth;
+        global $pth, $plugin_tx;
 
         $path = "{$pth['folder']['media']}$filename";
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
             $filename = $path . $extension;
             if (!file_exists($filename)) {
-                e('missing', 'file', $filename);
-                return false;
+                return XH_message('fail', $plugin_tx['audio']['error_missing_file'], $filename);
             }
         }
         return self::html($path, $autoplay, $loop);
