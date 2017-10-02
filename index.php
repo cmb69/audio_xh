@@ -32,3 +32,5 @@ function audio($filename, $autoplay = false, $loop = false)
 {
     return Audio\Plugin::audio($filename, $autoplay, $loop);
 }
+
+Audio\Plugin::run();

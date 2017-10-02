@@ -24,6 +24,33 @@ namespace Audio;
 class Plugin
 {
     /**
+     * @return void
+     */
+    public static function run()
+    {
+        if (XH_ADM) {
+            XH_registerStandardPluginMenuItems(false);
+            if (XH_wantsPluginAdministration('audio')) {
+                self::handleAdministration();
+            }
+        }
+    }
+
+    /**
+     * @return void
+     */
+    private static function handleAdministration()
+    {
+        global $o, $admin, $action;
+
+        $o .= print_plugin_admin('off');
+        switch ($admin) {
+            default:
+                $o .= plugin_admin_common($action, $admin, 'audio');
+        }
+    }
+
+    /**
     * Returns an AUDIO element.
     *
     * @param string $filename A relative path of an audio file (without file extension).
