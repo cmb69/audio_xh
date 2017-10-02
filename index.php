@@ -23,81 +23,6 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 /**
- * Returns the path of the audio folder.
- *
- * @return string
- *
- * @global array The paths of system files and folders.
- */
-function Audio_folder()
-{
-    global $pth;
-
-    $folder = isset($pth['folder']['media'])
-        ? $pth['folder']['media']
-        : $pth['folder']['downloads'];
-    return $folder;
-}
-
-/**
- * Returns an (X)HTML string with all empty XHTML elements converted to empty
- * HTML elements.
- *
- * @param string $html An HTML string.
- *
- * @return string (X)HTML.
- *
- * @global array The configuration of the core.
- */
-function Audio_fixEmptyElements($html)
-{
-    global $cf;
-
-    if (!$cf['xhtml']['endtags']) {
-        $html = str_replace('/>', '>', $html);
-    }
-    return $html;
-}
-
-/**
- * Returns an AUDIO element.
- *
- * @param string $filename A relative path of an audio file (without file extension).
- * @param string $player   A relative path to an SWF player.
- * @param bool   $autoplay Whether playback shall start automatically.
- * @param bool   $loop     Whether playback shall be repeated automatically.
- *
- * @return string (X)HTML.
- */
-function Audio_html($filename, $player, $autoplay, $loop)
-{
-    $displayname = basename($filename);
-    $urlencodedFilename = urlencode($filename . '.mp3');
-    $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
-    $html5autoplay .= $loop? ' loop="loop"' : '';
-    $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
-    $flashautoplay .= $loop? '&amp;repeat=yes' : '';
-    $o = <<<HTML
-
-<!-- Audio_XH: $displayname -->
-<audio controls="controls" title="$displayname" $html5autoplay>
-    <source src="$filename.ogg" type="audio/ogg"/>
-    <source src="$filename.mp3" type="audio/mpeg"/>
-    <object type="application/x-shockwave-flash" data="$player"
-            width="140" height="30">
-        <param name="movie" value="$player"/>
-        <param name="FlashVars" value="src=$urlencodedFilename$flashautoplay"/>
-        <a href="$filename.mp3">$displayname</a>
-    </object>
-</audio>
-
-HTML;
-
-    $o = Audio_fixEmptyElements($o);
-    return $o;
-}
-
-/**
  * Returns an AUDIO element.
  *
  * @param string $filename An audio filename without file extension.
@@ -108,17 +33,5 @@ HTML;
  */
 function audio($filename, $autoplay = false, $loop = false)
 {
-    global $pth;
-
-    $path = Audio_folder() . $filename;
-    $extensions = array('.ogg', '.mp3');
-    foreach ($extensions as $extension) {
-        $filename = $path . $extension;
-        if (!file_exists($filename)) {
-            e('missing', 'file', $filename);
-            return false;
-        }
-    }
-    $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-    return Audio_html($path, $player, $autoplay, $loop);
+    return Audio\Plugin::audio($filename, $autoplay, $loop);
 }
