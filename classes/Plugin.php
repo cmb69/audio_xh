@@ -59,16 +59,14 @@ class Plugin
     * Returns an AUDIO element.
     *
     * @param string $filename A relative path of an audio file (without file extension).
-    * @param string $player   A relative path to an SWF player.
     * @param bool   $autoplay Whether playback shall start automatically.
     * @param bool   $loop     Whether playback shall be repeated automatically.
     *
     * @return string (X)HTML.
     */
-    private static function html($filename, $player, $autoplay, $loop)
+    private static function html($filename, $autoplay, $loop)
     {
         $displayname = basename($filename);
-        $urlencodedFilename = urlencode($filename . '.mp3');
         $html5autoplay = $autoplay? 'autoplay="autoplay"' : '';
         $html5autoplay .= $loop? ' loop="loop"' : '';
         $flashautoplay = $autoplay? '&amp;autostart=yes' : '';
@@ -79,12 +77,7 @@ class Plugin
     <audio controls="controls" title="$displayname" $html5autoplay>
         <source src="$filename.ogg" type="audio/ogg"/>
         <source src="$filename.mp3" type="audio/mpeg"/>
-        <object type="application/x-shockwave-flash" data="$player"
-                width="140" height="30">
-            <param name="movie" value="$player"/>
-            <param name="FlashVars" value="src=$urlencodedFilename$flashautoplay"/>
-            <a href="$filename.mp3">$displayname</a>
-        </object>
+        <a href="$filename.mp3">$displayname</a>
     </audio>
 
 HTML;
@@ -104,8 +97,6 @@ HTML;
     */
     public static function audio($filename, $autoplay = false, $loop = false)
     {
-        global $pth;
-
         $path = self::folder() . $filename;
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
@@ -115,7 +106,6 @@ HTML;
                 return false;
             }
         }
-        $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
-        return self::html($path, $player, $autoplay, $loop);
+        return self::html($path, $autoplay, $loop);
     }
 }
