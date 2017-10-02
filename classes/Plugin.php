@@ -56,47 +56,4 @@ class Plugin
                 $o .= plugin_admin_common($action, $admin, 'audio');
         }
     }
-
-    /**
-    * Returns an AUDIO element.
-    *
-    * @param string $filename A relative path of an audio file (without file extension).
-    * @param bool   $autoplay Whether playback shall start automatically.
-    * @param bool   $loop     Whether playback shall be repeated automatically.
-    *
-    * @return string (X)HTML.
-    */
-    private static function html($filename, $autoplay, $loop)
-    {
-        $view = new View('audio');
-        $view->filename = $filename;
-        $view->displayname = basename($filename);
-        $view->autoplay = $autoplay ? 'autoplay' : '';
-        $view->loop = $loop ? ' loop' : '';
-        return (string) $view;
-    }
-
-    /**
-    * Returns an AUDIO element.
-    *
-    * @param string $filename An audio filename without file extension.
-    * @param bool   $autoplay Whether playback shall start automatically.
-    * @param bool   $loop     Whether playback shall be repeated automatically.
-    *
-    * @return string (X)HTML.
-    */
-    public static function audio($filename, $autoplay = false, $loop = false)
-    {
-        global $pth, $plugin_tx;
-
-        $path = "{$pth['folder']['media']}$filename";
-        $extensions = array('.ogg', '.mp3');
-        foreach ($extensions as $extension) {
-            $filename = $path . $extension;
-            if (!file_exists($filename)) {
-                return XH_message('fail', $plugin_tx['audio']['error_missing_file'], $filename);
-            }
-        }
-        return self::html($path, $autoplay, $loop);
-    }
 }
