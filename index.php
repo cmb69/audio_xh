@@ -122,5 +122,3 @@ function audio($filename, $autoplay = false, $loop = false)
     $player = $pth['folder']['plugins'] . 'audio/emff_stuttgart.swf';
     return Audio_html($path, $player, $autoplay, $loop);
 }
-
-?>
