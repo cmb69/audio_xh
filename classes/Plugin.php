@@ -23,7 +23,7 @@ namespace Audio;
 
 class Plugin
 {
-    const VERSION = '@AUDIO_VERSION@';
+    const VERSION = '1beta4';
 
     /**
      * @return void
