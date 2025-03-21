@@ -31,60 +31,43 @@ class AudioController
     /** @var View */
     private $view;
 
-    /**
-     * @var string
-     */
-    private $filename;
-
-    /**
-     * @var bool
-     */
-    private $autoplay;
-
-    /**
-     * @var bool
-     */
-    private $loop;
+    public function __construct(string $mediaFolder, View $view)
+    {
+        $this->mediaFolder = $mediaFolder;
+        $this->view = $view;
+    }
 
     /**
      * @param string $filename
      * @param bool $autoplay
      * @param bool $loop
-     */
-    public function __construct(string $mediaFolder, View $view, $filename, $autoplay = false, $loop = false)
-    {
-        $this->mediaFolder = $mediaFolder;
-        $this->view = $view;
-        $this->filename = $this->mediaFolder . $filename;
-        $this->autoplay = (bool) $autoplay;
-        $this->loop = (bool) $loop;
-    }
-
-    /**
      * @return string
      */
-    public function defaultAction()
+    public function defaultAction($filename, $autoplay = false, $loop = false)
     {
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
-            $filename = $this->filename . $extension;
+            $filename = $this->mediaFolder . $filename . $extension;
             if (!file_exists($filename)) {
                 return $this->view->message("fail", "error_missing_file", $filename);
             }
         }
-        return $this->renderView();
+        return $this->renderView($filename, $autoplay, $loop);
     }
 
     /**
-    * @return string
-    */
-    private function renderView()
+     * @param string $filename
+     * @param bool $autoplay
+     * @param bool $loop
+     * @return string
+     */
+    private function renderView($filename, $autoplay, $loop)
     {
         return $this->view->render("audio", [
-            "filename" => $this->filename,
-            "displayname" => basename($this->filename),
-            "autoplay" => $this->autoplay ? 'autoplay' : '',
-            "loop" => $this->loop ? ' loop' : '',
+            "filename" => $filename,
+            "displayname" => basename($filename),
+            "autoplay" => $autoplay ? 'autoplay' : '',
+            "loop" => $loop ? ' loop' : '',
         ]);
     }
 }
