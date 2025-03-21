@@ -23,16 +23,7 @@ use Audio\Dic;
 
 const AUDIO_VERSION = "1beta4";
 
-/**
- * Returns an AUDIO element.
- *
- * @param string $filename An audio filename without file extension.
- * @param bool   $autoplay Whether playback shall start automatically.
- * @param bool   $loop     Whether playback shall be repeated automatically.
- *
- * @return string (X)HTML.
- */
-function audio($filename, $autoplay = false, $loop = false)
+function audio(string $filename, bool $autoplay = false, bool $loop = false): string
 {
     return Dic::audioController()->defaultAction($filename, $autoplay, $loop);
 }

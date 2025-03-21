@@ -37,13 +37,7 @@ class AudioController
         $this->view = $view;
     }
 
-    /**
-     * @param string $filename
-     * @param bool $autoplay
-     * @param bool $loop
-     * @return string
-     */
-    public function defaultAction($filename, $autoplay = false, $loop = false)
+    public function defaultAction(string $filename, bool $autoplay, bool $loop): string
     {
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
@@ -55,13 +49,7 @@ class AudioController
         return $this->renderView($filename, $autoplay, $loop);
     }
 
-    /**
-     * @param string $filename
-     * @param bool $autoplay
-     * @param bool $loop
-     * @return string
-     */
-    private function renderView($filename, $autoplay, $loop)
+    private function renderView(string $filename, bool $autoplay, bool $loop): string
     {
         return $this->view->render("audio", [
             "filename" => $this->mediaFolder . $filename,

@@ -19,6 +19,6 @@ class AudioControllerTest extends TestCase
             vfsStream::url("root/userfiles/media/"),
             new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["audio"])
         );
-        Approvals::verifyHtml($sut->defaultAction("goldberg"));
+        Approvals::verifyHtml($sut->defaultAction("goldberg", false, false));
     }
 }
