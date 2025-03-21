@@ -21,6 +21,8 @@
 
 namespace Audio;
 
+use Plib\View;
+
 class Plugin
 {
     const VERSION = '1beta4';
@@ -43,15 +45,16 @@ class Plugin
      */
     private function handleAdministration()
     {
-        global $o, $admin, $pth;
+        global $o, $admin, $pth, $plugin_tx;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
             case '':
-                $view = new View('info');
-                $view->logo = "{$pth['folder']['plugins']}audio/audio.png";
-                $view->version = self::VERSION;
-                $o .= $view;
+                $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
+                $o .= $view->render("info", [
+                    "logo" => "{$pth['folder']['plugins']}audio/audio.png",
+                    "version" => self::VERSION,
+                ]);
                 break;
             default:
                 $o .= plugin_admin_common();

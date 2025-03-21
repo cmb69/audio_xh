@@ -1,6 +1,6 @@
 <h1>Audio</h1>
-<img src="<?=$this->logo()?>" class="audio_logo" alt="<?=$this->text('alt_logo')?>">
-<p>Version: <?=$this->version()?></p>
+<img src="<?=$this->esc($logo)?>" class="audio_logo" alt="<?=$this->text('alt_logo')?>">
+<p>Version: <?=$this->esc($version)?></p>
 <p>Copyright © 2013-2017 Christoph M. Becker</p>
 <p class="audio_license">
     Audio_XH is free software: you can redistribute it and/or modify it

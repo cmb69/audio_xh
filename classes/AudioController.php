@@ -21,6 +21,8 @@
 
 namespace Audio;
 
+use Plib\View;
+
 class AudioController
 {
     /**
@@ -70,19 +72,22 @@ class AudioController
                 return XH_message('fail', $this->lang['error_missing_file'], $filename);
             }
         }
-        $this->prepareView()->render();
+        echo $this->renderView();
     }
 
     /**
-    * @return View
+    * @return string
     */
-    private function prepareView()
+    private function renderView()
     {
-        $view = new View('audio');
-        $view->filename = $this->filename;
-        $view->displayname = basename($this->filename);
-        $view->autoplay = $this->autoplay ? 'autoplay' : '';
-        $view->loop = $this->loop ? ' loop' : '';
-        return $view;
+        global $pth, $plugin_tx;
+
+        $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
+        return $view->render("audio", [
+            "filename" => $this->filename,
+            "displayname" => basename($this->filename),
+            "autoplay" => $this->autoplay ? 'autoplay' : '',
+            "loop" => $this->loop ? ' loop' : '',
+        ]);
     }
 }
