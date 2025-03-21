@@ -47,9 +47,9 @@ class AudioController
     {
         $extensions = array('.ogg', '.mp3');
         foreach ($extensions as $extension) {
-            $filename = $this->mediaFolder . $filename . $extension;
-            if (!file_exists($filename)) {
-                return $this->view->message("fail", "error_missing_file", $filename);
+            $file = $this->mediaFolder . $filename . $extension;
+            if (!file_exists($file)) {
+                return $this->view->message("fail", "error_missing_file", $file);
             }
         }
         return $this->renderView($filename, $autoplay, $loop);
@@ -64,7 +64,7 @@ class AudioController
     private function renderView($filename, $autoplay, $loop)
     {
         return $this->view->render("audio", [
-            "filename" => $filename,
+            "filename" => $this->mediaFolder . $filename,
             "displayname" => basename($filename),
             "autoplay" => $autoplay ? 'autoplay' : '',
             "loop" => $loop ? ' loop' : '',
