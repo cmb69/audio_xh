@@ -29,11 +29,6 @@ class AudioController
     private $view;
 
     /**
-     * @var array<string,string>
-     */
-    private $lang;
-
-    /**
      * @var string
      */
     private $filename;
@@ -55,10 +50,9 @@ class AudioController
      */
     public function __construct(View $view, $filename, $autoplay = false, $loop = false)
     {
-        global $pth, $plugin_tx;
+        global $pth;
 
         $this->view = $view;
-        $this->lang = $plugin_tx['audio'];
         $this->filename = "{$pth['folder']['media']}{$filename}";
         $this->autoplay = (bool) $autoplay;
         $this->loop = (bool) $loop;
@@ -73,7 +67,7 @@ class AudioController
         foreach ($extensions as $extension) {
             $filename = $this->filename . $extension;
             if (!file_exists($filename)) {
-                return XH_message('fail', $this->lang['error_missing_file'], $filename);
+                return $this->view->message("fail", "error_missing_file", $filename);
             }
         }
         return $this->renderView();
