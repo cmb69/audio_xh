@@ -36,7 +36,7 @@ if (XH_wantsPluginAdministration('audio')) {
     $o .= print_plugin_admin('off');
     switch ($admin) {
         case '':
-            $o .= Dic::infoController()();
+            $o .= Dic::infoController()()();
             break;
         default:
             $o .= plugin_admin_common();

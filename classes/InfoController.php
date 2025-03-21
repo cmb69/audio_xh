@@ -21,6 +21,7 @@
 
 namespace Audio;
 
+use Plib\Response;
 use Plib\SystemChecker;
 use Plib\View;
 
@@ -42,12 +43,12 @@ class InfoController
         $this->view = $view;
     }
 
-    public function __invoke(): string
+    public function __invoke(): Response
     {
-        return $this->view->render("info", [
+        return Response::create($this->view->render("info", [
             "version" => AUDIO_VERSION,
             "checks" => $this->systemChecks(),
-        ]);
+        ]))->withTitle($this->view->esc("Audio " . AUDIO_VERSION));
     }
 
     /** @return list<object{class:string,message:string}> */

@@ -16,6 +16,8 @@ class InfoControllerTest extends TestCase
             new FakeSystemChecker(),
             new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["audio"])
         );
-        Approvals::verifyHtml($sut());
+        $response = $sut();
+        $this->assertSame("Audio 1beta4", $response->title());
+        Approvals::verifyHtml($response->output());
     }
 }
