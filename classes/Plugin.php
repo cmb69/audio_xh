@@ -51,10 +51,7 @@ class Plugin
         switch ($admin) {
             case '':
                 $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
-                $o .= $view->render("info", [
-                    "logo" => "{$pth['folder']['plugins']}audio/audio.png",
-                    "version" => self::VERSION,
-                ]);
+                $o .= (new InfoController($pth["folder"]["plugins"] . "audio/", $view))();
                 break;
             default:
                 $o .= plugin_admin_common();
