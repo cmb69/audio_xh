@@ -25,6 +25,9 @@ use Plib\View;
 
 class AudioController
 {
+    /** @var string */
+    private $mediaFolder;
+
     /** @var View */
     private $view;
 
@@ -48,12 +51,11 @@ class AudioController
      * @param bool $autoplay
      * @param bool $loop
      */
-    public function __construct(View $view, $filename, $autoplay = false, $loop = false)
+    public function __construct(string $mediaFolder, View $view, $filename, $autoplay = false, $loop = false)
     {
-        global $pth;
-
+        $this->mediaFolder = $mediaFolder;
         $this->view = $view;
-        $this->filename = "{$pth['folder']['media']}{$filename}";
+        $this->filename = $this->mediaFolder . $filename;
         $this->autoplay = (bool) $autoplay;
         $this->loop = (bool) $loop;
     }

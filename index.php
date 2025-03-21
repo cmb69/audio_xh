@@ -35,7 +35,7 @@ function audio($filename, $autoplay = false, $loop = false)
     global $pth, $plugin_tx;
 
     $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
-    return (new Audio\AudioController($view, $filename, $autoplay, $loop))->defaultAction();
+    return (new Audio\AudioController($pth["folder"]["media"], $view, $filename, $autoplay, $loop))->defaultAction();
 }
 
 (new Audio\Plugin())->run();
