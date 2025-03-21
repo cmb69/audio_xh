@@ -30,7 +30,7 @@ class Plugin
      */
     public function run()
     {
-        if (XH_ADM) {
+        if (XH_ADM) { // @phpstan-ignore-line
             XH_registerStandardPluginMenuItems(false);
             if (XH_wantsPluginAdministration('audio')) {
                 $this->handleAdministration();
