@@ -61,7 +61,7 @@ class AudioController
     }
 
     /**
-     * @return void
+     * @return string
      */
     public function defaultAction()
     {
@@ -69,10 +69,10 @@ class AudioController
         foreach ($extensions as $extension) {
             $filename = $this->filename . $extension;
             if (!file_exists($filename)) {
-                echo XH_message('fail', $this->lang['error_missing_file'], $filename);
+                return XH_message('fail', $this->lang['error_missing_file'], $filename);
             }
         }
-        echo $this->renderView();
+        return $this->renderView();
     }
 
     /**
