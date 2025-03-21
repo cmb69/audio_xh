@@ -41,7 +41,7 @@ class InfoController
     {
         return $this->view->render("info", [
             "logo" => $this->pluginFolder . "audio.png",
-            "version" => Plugin::VERSION,
+            "version" => AUDIO_VERSION,
         ]);
     }
 }

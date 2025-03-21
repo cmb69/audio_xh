@@ -21,6 +21,8 @@
 
 use Audio\Dic;
 
+const AUDIO_VERSION = "1beta4";
+
 /**
  * Returns an AUDIO element.
  *
@@ -34,5 +36,3 @@ function audio($filename, $autoplay = false, $loop = false)
 {
     return Dic::audioController()->defaultAction($filename, $autoplay, $loop);
 }
-
-(new Audio\Plugin())->run();

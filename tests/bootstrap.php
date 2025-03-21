@@ -9,4 +9,5 @@ require_once "../plib/classes/View.php";
 require_once "./classes/AudioController.php";
 require_once "./classes/Dic.php";
 require_once "./classes/InfoController.php";
-require_once "./classes/Plugin.php";
+
+const AUDIO_VERSION = "1beta4";
