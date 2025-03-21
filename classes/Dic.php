@@ -21,6 +21,7 @@
 
 namespace Audio;
 
+use Plib\SystemChecker;
 use Plib\View;
 
 class Dic
@@ -36,7 +37,7 @@ class Dic
     {
         global $pth;
 
-        return new InfoController($pth["folder"]["plugins"] . "audio/", self::view());
+        return new InfoController($pth["folder"]["plugins"] . "audio/", new SystemChecker(), self::view());
     }
 
     private static function view(): View
