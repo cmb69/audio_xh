@@ -19,6 +19,8 @@
  * along with Audio_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Plib\View;
+
 /**
  * Returns an AUDIO element.
  *
@@ -30,7 +32,10 @@
  */
 function audio($filename, $autoplay = false, $loop = false)
 {
-    return (new Audio\AudioController($filename, $autoplay, $loop))->defaultAction();
+    global $pth, $plugin_tx;
+
+    $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
+    return (new Audio\AudioController($view, $filename, $autoplay, $loop))->defaultAction();
 }
 
 (new Audio\Plugin())->run();

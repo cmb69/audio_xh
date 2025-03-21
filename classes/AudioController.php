@@ -25,6 +25,9 @@ use Plib\View;
 
 class AudioController
 {
+    /** @var View */
+    private $view;
+
     /**
      * @var array<string,string>
      */
@@ -50,10 +53,11 @@ class AudioController
      * @param bool $autoplay
      * @param bool $loop
      */
-    public function __construct($filename, $autoplay = false, $loop = false)
+    public function __construct(View $view, $filename, $autoplay = false, $loop = false)
     {
         global $pth, $plugin_tx;
 
+        $this->view = $view;
         $this->lang = $plugin_tx['audio'];
         $this->filename = "{$pth['folder']['media']}{$filename}";
         $this->autoplay = (bool) $autoplay;
@@ -80,10 +84,7 @@ class AudioController
     */
     private function renderView()
     {
-        global $pth, $plugin_tx;
-
-        $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
-        return $view->render("audio", [
+        return $this->view->render("audio", [
             "filename" => $this->filename,
             "displayname" => basename($this->filename),
             "autoplay" => $this->autoplay ? 'autoplay' : '',
