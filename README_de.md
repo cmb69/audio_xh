@@ -17,7 +17,7 @@ JavaScript wird nicht benötigt.
 ## Voraussetzungen
 
 Audio_XH ist ein Plugin für [CMSimple_XH](https://cmsimple-xh.org/de/).
-Es benötigt CMSimple_XH ≥ 1.7.0 und PHP ≥ 5.4.0.
+Es benötigt CMSimple_XH ≥ 1.7.0 und PHP ≥ 7.1.0.
 
 ## Download
 
