@@ -1,134 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Audio_XH - Manual</title>
-<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Audio_XH – User Manual</title>
+  <style type="text/css">
+    body {
+        font-family: Georgia, serif;
+        line-height: 1.5;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        background: #ffffe1;
+        max-width: 40em;
+    }
+    p {
+        text-align: justify;
+    }
+    pre {
+        color: black;
+        background: #ffe;
+        overflow: auto;
+        padding: 0.2em 0.5em;
+        border: 1px solid silver;
+    }
+  </style>
 </head>
-
 <body>
-
-<h1>Audio_XH &ndash; a CMSimple_XH Plugin</h1>
-<img src="../audio.png" style="float: left; margin-right: 16px"
-alt="Plugin icon">
-<p style="text-align:justify">Audio_XH facilitates the presentation of audio
-players on a CMSimple_XH website. You have to provide an MP3 and an Ogg Vorbis
-file for each player. If the visitor's browser supports the AUDIO element, the
-plugin uses this feature, and offers a link to the MP3 file otherwise. JavaScript is
-not required.</p>
-
-<ul id="nav">
-<li><a href="#notice">Important Notice</a></li>
+<h1 id="audio_xh">Audio_XH</h1>
+<p>Audio_XH facilitates the presentation of audio players on a CMSimple_XH website. You have to provide an MP3 and an Ogg Vorbis file for each player. If the browser of the visitor supports the AUDIO element, the plugin uses this feature, and offers a link to the MP3 file otherwise. JavaScript is not required.</p>
+<ul>
 <li><a href="#requirements">Requirements</a></li>
+<li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
-<!--<li><a href="#settings">Settings</a></li>-->
 <li><a href="#usage">Usage</a></li>
-<!--<li><a href="#limitations">Limitations</a></li>-->
+<li><a href="#troubleshooting">Troubleshooting</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#credits">Credits</a></li>
 </ul>
-
-<div id="body">
-
-<p><strong>Please do read this documentation <em>before</em> you encounter any
-problems!</strong></p>
-
-<h2 id="notice">Important Notice</h2>
-<p><strong>Audio_XH couldn't be tested so far in various environments.
-It is a so called BETA version. Use with caution!</strong></p>
-<div class="toplink"><a href="#">back to top</a></div>
-
 <h2 id="requirements">Requirements</h2>
-<p>Audio_XH requires CMSimple_XH ≥ 1.6.3
-and PHP ≥ 5.4.0.</p>
-<div class="toplink"><a href="#">back to top</a></div>
-
+<p>Audio_XH is a plugin for <a href="https://cmsimple-xh.org/">CMSimple_XH</a>. It requires CMSimple_XH ≥ 1.6.3 and PHP ≥ 5.4.0.</p>
+<h2 id="download">Download</h2>
+<p>The <a href="https://github.com/cmb69/audio_xh/releases/latest">lastest release</a> is available for download on Github.</p>
 <h2 id="installation">Installation</h2>
-<p>The installation is done as with many other CMSimple_XH plugins.
-See the <a href="http://www.cmsimple-xh.org/wiki/doku.php/installation">
-CMSimple_XH wiki</a> for further details.</p>
-<ol>
+<p>The installation is done as with many other CMSimple_XH plugins.</p>
+<ol type="1">
 <li>Backup the data on your server.</li>
 <li>Unzip the distribution on your computer.</li>
-<li>Upload the whole directory audio/ to your server into CMSimple_XH's
-plugins directory.</li>
-<li>Set write permissions to the subfolders css/ and languages/.</li>
-<!--<li>Switch to "Adventcalendar" in the back-end to check if all requirements are-->
-<!--fulfilled.</li>-->
+<li>Upload the whole directory <code>audio/</code> to your server into the <code>plugins/</code> directory of CMSimple_XH.</li>
+<li>Set write permissions for the subdirectories <code>css/</code> and <code>languages/</code>. <!-- 1. Navigate to `Plugins` → `Audio` in the back-end
+   to check if all requirements are fulfilled. --></li>
 </ol>
-<div class="toplink"><a href="#">back to top</a></div>
-
-<!--<h2 id="settings">Settings</h2>-->
-<!--<p>The plugin's configuration is done as with many other CMSimple_XH plugins in-->
-<!--the website's back-end. Select "Adventcalendar" from "Plugins".</p>-->
-<!--<p>You can change the default settings of Adventcalendar_XH under "Config".-->
-<!--Hints for the options will be displayed when hovering over the help icons with-->
-<!--your mouse.</p>-->
-<!--<p>Localization is done under "Language". You can translate the character-->
-<!--strings to your own language, or customize them according to your needs.</p>-->
-<!--<p>The look of the Adventcalendar_XH can be customized under "Stylesheet".</p>-->
-<!--<div class="toplink"><a href="#">back to top</a></div>-->
-
 <h2 id="usage">Usage</h2>
-<p>As Audio_XH provides no such facility, you have to upload your audio files to
-the configured media folder via FTP, the file browser or <a
-href="http://3-magi.net/?CMSimple_XH/Uploader_XH">Uploader_XH</a>. Each audio
-file has to be uploaded as MP3 (.mp3) <i>and</i> an Ogg Vorbis (.ogg) version;
-both files have to be in the same folder and have the same name.</p>
-<p>To present an audio player on a page, just insert the following plugin
-call:</p>
-<pre>{{{PLUGIN:audio('FILENAME');}}}</pre>
-<p>FILENAME has to be a file path (without file extension) relative to the
-configured media folder.</p>
-<p>For example, if you have music.mp3 and music.ogg directly in the media
-folder, use:</p>
-<pre>{{{PLUGIN:audio('music');}}}</pre>
-<p>To present an audio player on all pages, just insert the following in your
-template:</p>
-<pre>&lt;?php echo audio('FILENAME');?&gt;</pre>
-<p>Autoplay will be activated by adding a second argument 1 in the call:</p>
-<pre>. . . audio('FILENAME', 1); . . .</pre>
-<p>Automatic repeat is activated by adding a third argument 1 in the call, e.g. with autoplay:</p>
-<pre> . . . audio('FILENAME', 1, 1); . . .</pre>
+<p>As Audio_XH provides no such facility, you have to upload your audio files to the configured media folder via FTP, the file browser or <a href="https://github.com/cmb69/uploader_xh">Uploader_XH</a>. Each audio file has to be uploaded as MP3 (.mp3) <em>and</em> Ogg Vorbis (.ogg) version; both files have to be in the same folder and have the same name.</p>
+<p>To present an audio player on a page, just insert the following plugin call:</p>
+<pre><code>{{{audio(&#39;FILENAME&#39;)}}}</code></pre>
+<p><code>FILENAME</code> has to be a file path (without file extension) relative to the configured media folder.</p>
+<p>For example, if you have music.mp3 and music.ogg directly in the media folder, use:</p>
+<pre><code>{{{audio(&#39;music&#39;)}}}</code></pre>
+<p>To present an audio player on all pages, just insert the following in your template:</p>
+<pre><code>&lt;?=audio(&#39;FILENAME&#39;)?&gt;</code></pre>
+<p>Autoplay can be activated by adding a second argument 1 in the call:</p>
+<pre><code>. . . audio(&#39;FILENAME&#39;, 1); . . .</code></pre>
+<p>Automatic repeat is activated by adding a third argument 1 in the call, e.g. with autoplay:</p>
+<pre><code>. . . audio(&#39;FILENAME&#39;, 1, 1); . . .</code></pre>
 <p>or without autoplay:</p>
-<pre> . . . audio('FILENAME', 0, 1); . . .</pre>
-
-<p>Note, that it's possible to have multiple audio players with autoplay enabled
-on a single page, but it's usually not desired by your visitors.</p>
-<div class="toplink"><a href="#">back to top</a></div>
-
-<!--<h2 id="limitations">Limitations</h2>-->
-<!--<ul>-->
-<!--</ul>-->
-<!--<div class="toplink"><a href="#">back to top</a></div>-->
-
+<pre><code>. . . audio(&#39;FILENAME&#39;, 0, 1); . . .</code></pre>
+<p>Note, that it is possible to have multiple audio players with autoplay enabled on a single page, but it is usually not desired by your visitors.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Report bugs and ask for support either on <a href="https://github.com/cmb69/audio_xh/issues">Github</a> or in the <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="license">License</h2>
-<p>Audio_XH is licensed under <a
-href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
-<p>&copy; 2013-2017 Christoph M. Becker</p>
-<div class="toplink"><a href="#">back to top</a></div>
-
+<p>Audio_XH is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>Audio_XH is distributed in the hope that it will be useful, but <em>without any warranty</em>; without even the implied warranty of <em>merchantibility</em> or <em>fitness for a particular purpose</em>. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with Audio_XH. If not, see <a href="https://www.gnu.org/licenses/" class="uri">https://www.gnu.org/licenses/</a>.</p>
+<p>Copyright © Christoph M. Becker</p>
 <h2 id="credits">Credits</h2>
-<p>This plugin was inspired by jop.</p>
-<p>The plugin icon is designed by <a
-href="http://www.yellowicon.com/">YellowIcon</a>. Many thanks for publishing
-this icon under GPL.</p>
-<!--<p>This plugin uses free applications icons from <a-->
-<!--href="http://www.aha-soft.com/">Aha-Soft</a>. Many thanks for making these icons-->
-<!--freely available.</p>-->
-<p>Many thanks to the community at the <a
-href="http://cmsimpleforum.com/">CMSimple_XH forum</a> for tips, suggestions and
-testing. Especially I want to thank Ulrich for the early feedback, and svasti
-for contributing the autoplay code.</p>
-<p>And last but not least many thanks to <a href="http://www.harteg.dk/">Peter
-Harteg</a>, the "father" of CMSimple, and all developers of <a
-href="http://www.cmsimple-xh.org">CMSimple_XH</a> without whom this amazing CMS
-wouldn't exist.</p>
-<div class="toplink"><a href="#">back to top</a></div>
-
-</div>
-
+<p>This plugin was inspired by <em>jop</em>.</p>
+<p>The plugin icon is designed by <a href="http://www.yellowicon.com/">YellowIcon</a>. Many thanks for publishing this icon under GPL.</p>
+<p>Many thanks to the community at the <a href="https://cmsimpleforum.com/">CMSimple_XH forum</a> for tips, suggestions and testing. Especially I want to thank <em>Ulrich</em> for the early feedback, and <em>svasti</em> for contributing the autoplay code.</p>
+<p>And last but not least many thanks to <a href="https://www.harteg.dk/">Peter Harteg</a>, the “father” of CMSimple, and all developers of <a href="https://www.cmsimple-xh.org/">CMSimple_XH</a> without whom this amazing CMS would not exist.</p>
 </body>
-
 </html>
