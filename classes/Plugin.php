@@ -21,8 +21,6 @@
 
 namespace Audio;
 
-use Plib\View;
-
 class Plugin
 {
     const VERSION = '1beta4';
@@ -45,13 +43,12 @@ class Plugin
      */
     private function handleAdministration()
     {
-        global $o, $admin, $pth, $plugin_tx;
+        global $o, $admin;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
             case '':
-                $view = new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
-                $o .= (new InfoController($pth["folder"]["plugins"] . "audio/", $view))();
+                $o .= Dic::infoController()();
                 break;
             default:
                 $o .= plugin_admin_common();
