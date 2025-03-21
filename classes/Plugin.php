@@ -43,7 +43,7 @@ class Plugin
      */
     private function handleAdministration()
     {
-        global $o, $admin, $action, $pth;
+        global $o, $admin, $pth;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
@@ -54,7 +54,7 @@ class Plugin
                 $o .= $view;
                 break;
             default:
-                $o .= plugin_admin_common($action, $admin, 'audio');
+                $o .= plugin_admin_common();
         }
     }
 }
