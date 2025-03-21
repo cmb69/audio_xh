@@ -26,7 +26,7 @@ use Plib\View;
 class AudioController
 {
     /**
-     * @var array
+     * @var array<string,string>
      */
     private $lang;
 
@@ -69,7 +69,7 @@ class AudioController
         foreach ($extensions as $extension) {
             $filename = $this->filename . $extension;
             if (!file_exists($filename)) {
-                return XH_message('fail', $this->lang['error_missing_file'], $filename);
+                echo XH_message('fail', $this->lang['error_missing_file'], $filename);
             }
         }
         echo $this->renderView();

@@ -32,7 +32,7 @@ function audio($filename, $autoplay = false, $loop = false)
 {
     ob_start();
     (new Audio\AudioController($filename, $autoplay, $loop))->defaultAction();
-    return ob_get_clean();
+    return (string) ob_get_clean();
 }
 
 (new Audio\Plugin())->run();
