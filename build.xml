@@ -2,15 +2,6 @@
 
 <project name="Audio" default="help">
 
-    <fileset id="php-sources" dir=".">
-        <include name="index.php"/>
-        <include name="classes/**.php"/>
-    </fileset>
-
-    <fileset id="js-sources" dir=".">
-        <include name="*.js"/>
-    </fileset>
-
     <target name="help" description="lists available targets">
         <exec executable="phing" outputProperty="help">
             <arg value="-l"/>
