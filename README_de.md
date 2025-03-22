@@ -41,8 +41,8 @@ Die Installation erfolgt wie bei vielen anderen CMSimple\_XH-Plugins auch.
    in das `plugins/` Verzeichnis von CMSimple\_XH hoch.
 1. Vergeben Sie falls nötig Schreibrechte für die Unterverzeichnisse
    `css/` und `languages/`.
-<!-- 1. Gehen Sie zu `Plugins` → `Audio` im Administrationsbereich,
-   um zu prüfen, ob alle Voraussetzungen erfüllt sind. -->
+1. Gehen Sie zu `Plugins` → `Audio` im Administrationsbereich,
+   um zu prüfen, ob alle Voraussetzungen erfüllt sind.
 
 ## Verwendung
 

@@ -41,8 +41,8 @@ The installation is done as with many other CMSimple_XH plugins.
    into the `plugins/` directory of CMSimple_XH.
 1. Set write permissions for the subdirectories
    `css/` and `languages/`.
-<!-- 1. Navigate to `Plugins` → `Audio` in the back-end
-   to check if all requirements are fulfilled. -->
+1. Navigate to `Plugins` → `Audio` in the back-end
+   to check if all requirements are fulfilled.
 
 ## Usage
 
