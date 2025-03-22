@@ -16,7 +16,7 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
  */
 ?>
 
-<figure itemscope itemtype="http://schema.org/AudioObject">
+<figure class="audio_figure" itemscope itemtype="http://schema.org/AudioObject">
 <?if ($meta):?>
   <meta itemprop="name" content="<?=$this->esc($meta->name())?>">
   <meta itemprop="description" content="<?=$this->esc($meta->description())?>">

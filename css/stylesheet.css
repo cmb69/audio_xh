@@ -1,7 +1,9 @@
-.audio_logo {
-    float: left;
-    margin: 0 1.5em 0.5em 0;
+/* audio players */
+.audio_figure {
 }
-.audio_license {
-    text-align: justify;
+.audio_figure figcaption {
+}
+
+/* plugin system check */
+.audio_syscheck {
 }
