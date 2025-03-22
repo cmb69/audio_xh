@@ -17,4 +17,4 @@ require_once "./classes/Dic.php";
 require_once "./classes/InfoController.php";
 
 const CMSIMPLE_XH_VERSION = "CMSimple_XH 1.7.6";
-const AUDIO_VERSION = "1.0";
+const AUDIO_VERSION = "1.1-dev";
