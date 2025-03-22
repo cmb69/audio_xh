@@ -84,12 +84,20 @@
     <!-- description of the plugin, ca. 200 characters, you can use <br/>, <ol></ol>, <ul></ul>, <li></li>, <b></b>, <i></i>. -->
     <description lang="en">
       Audio_XH facilitates the presentation of audio players on a CMSimple_XH website.
-      You have to provide an MP3 and an Ogg Vorbis file for each player.
+      You can provide multiple audio format files for each player.
+      If the browser of the visitor supports the &lt;audio&gt; element
+      (which is supported by all major browsers since 2015)
+      and one of the supplied audio formats, an audio player is displayed.
+      Otherwise a download link is displayed.
     </description>
     <!-- Beschreibung des Plugins, ca. 200 Zeichen, es können <br/>, <ol></ol>, <ul></ul>, <li></li>, <b></b>, <i></i> genutzt werden. -->
     <description lang="de">
       Audio_XH ermöglicht die Darstellung von Audio-Playern auf einer CMSimple_XH Website.
-      Sie müssen eine MP3 und eine Ogg Vorbis Datei für jeden Player bereit stellen.
+      Sie können mehrere Audioformate für jeden Player bereit stellen.
+      Unterstützt der Browser des Besuchers das &lt;audio&gt; Element
+      (das von allen wichtigen Browsern seit 2015 unterstüzt wird),
+      und eines der angebotenen Audioformate, wird ein Audio-Player angezeigt.
+      Andernfalls wird ein Download-Link angezeigt.
     </description>
     <!-- additional languages are possible, i.e. da, fr, pl, ... -->
     <!-- The use of this language is limited by the website where the repository is hosted. -->
