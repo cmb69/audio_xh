@@ -10,6 +10,7 @@ JavaScript wird nicht benötigt.
 - [Download](#download)
 - [Installation](#installation)
 - [Verwendung](#verwendung)
+  - [Meta-Daten](#meta-daten)
 - [Problembehebung](#problembehebung)
 - [Lizenz](#lizenz)
 - [Danksagung](#danksagung)
@@ -58,10 +59,10 @@ folgenden Pluginaufruf ein:
 `DATEINAME` muss ein Dateipfad (ohne Dateieerweiterung) relativ zum
 konfigurierten Media Ordner sein.
 
-Wenn Sie also zum Beispiel musik.mp3 und musik.ogg direkt im Media-Ordner
+Wenn Sie also zum Beispiel goldberg.mp3 und goldberg.ogg direkt im Media-Ordner
 abgelegt haben, verwenden Sie:
 
-    {{{audio('musik')}}}
+    {{{audio('goldberg')}}}
 
 Um einen Audio-Player auf allen Seiten darzustellen, fügen Sie einfach
 folgendes in Ihr Template ein:
@@ -85,6 +86,34 @@ oder ohne Autoplay:
 Beachten Sie, dass es möglich ist mehrere Audio-Player mit aktiviertem
 Autoplay auf einer Seite einzubinden, aber dass das i.d.R. nicht wünschenswert
 ist.
+
+### Meta-Daten
+
+Sie können optional Meta-Daten für die Audio-Dateien bereits stellen,
+indem sie eine Datei `audio.csv` in den `content/` Ordner
+von CMSimple_XH hoch laden.
+Diese Datei muss im CSV-Format vorliegen
+(UTF-8 kodiert, durch Kommma getrennte Werte),
+und die folgenden Spalten enthalten (eine Kopfzeile ist optional):
+
+1. `id`: der Dateiname der Audio-Datei, wie im Pluginaufruf angegeben
+1. `name`: der Name des Audios
+1. `description`: die Beschreibung des Audios
+
+Ein `audio.csv` Beispiel (mit Kopfzeile):
+
+    ID,Name,Description
+    goldberg,Goldberg-Variationen,"Die Goldberg-Variationen sind ein Werk Johann Sebastian Bachs (BWV 988) für Cembalo. Im von Bach selbst veranlassten Erstdruck aus dem Jahr 1741 wurde es als Clavier Ubung bestehend in einer ARIA mit verschiedenen Verænderungen vors Clavicimbal mit 2 Manualen bezeichnet. Die Benennung nach Johann Gottlieb Goldberg entstand posthum aufgrund einer Anekdote."
+
+Sie können einen Texteditor oder Ihre bevorzugte Tabellenkalkulation
+verwenden, um diese Datei zu erstellen und zu warten.
+
+Sind Meta-Daten für das Audio verfügbar, werden diese verwendet um
+[Microdata](https://en.wikipedia.org/wiki/Microdata_(HTML)),
+konform zu [schema.org AudioObjects](https://schema.org/AudioObject),
+zu generieren, was für Suchmaschinen nützlich ist.
+Weiterhin wird eine `<figcaption>` mit dem `name`
+oberhalb des Audio-Players eingefügt.
 
 ## Problembehebung
 

@@ -10,6 +10,7 @@ JavaScript is not required.
 - [Download](#download)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Meta Data](#meta-data)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 - [Credits](#credits)
@@ -56,10 +57,10 @@ To present an audio player on a page, just insert the following plugin call:
 `FILENAME` has to be a file path (without file extension) relative to the
 configured media folder.
 
-For example, if you have music.mp3 and music.ogg directly in the media
+For example, if you have goldberg.mp3 and goldberg.ogg directly in the media
 folder, use:
 
-    {{{audio('music')}}}
+    {{{audio('goldberg')}}}
 
 To present an audio player on all pages, just insert the following in your template:
 
@@ -79,6 +80,32 @@ or without autoplay:
 
 Note, that it is possible to have multiple audio players with autoplay enabled
 on a single page, but it is usually not desired by your visitors.
+
+### Meta Data
+
+You can optionally provide meta data for the audio files by manually
+uploading a file `audio.csv` into the `content/` folder of CMSimple_XH.
+This file must be a proper CSV file (UTF-8 encoded, comma separated values),
+and contain the following columns (a header line is optional):
+
+1. `id`: the filename of the audio file as specified in the plugin call
+1. `name`: the name of the audio
+1. `description`: the description of the audio
+
+An `audio.csv` example (with header line):
+
+    ID,Name,Description
+    goldberg,Goldberg Variations,"The Goldberg Variations (German: Goldberg-Variationen), BWV 988, is a musical composition for keyboard by Johann Sebastian Bach, consisting of an aria and a set of 30 variations. First published in 1741, it is named after Johann Gottlieb Goldberg, who may also have been the first performer of the work."
+
+You can use a text editor or your favorite spreadsheet application
+to create and maintain this file.
+
+If meta data for an audio is available, it will be used to generate
+[Microdata](https://en.wikipedia.org/wiki/Microdata_(HTML))
+conforming to [schema.org AudioObjects](https://schema.org/AudioObject),
+what is useful for search engines.
+Furthermore, a `<figcaption>` with the `name`
+will be inserted above the audio player.
 
 ## Troubleshooting
 

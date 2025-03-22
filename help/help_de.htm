@@ -35,7 +35,10 @@
 <li><a href="#voraussetzungen">Voraussetzungen</a></li>
 <li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#verwendung">Verwendung</a></li>
+<li><a href="#verwendung">Verwendung</a>
+<ul>
+<li><a href="#meta-daten">Meta-Daten</a></li>
+</ul></li>
 <li><a href="#problembehebung">Problembehebung</a></li>
 <li><a href="#lizenz">Lizenz</a></li>
 <li><a href="#danksagung">Danksagung</a></li>
@@ -58,8 +61,8 @@
 <p>Um einen Audio-Player auf einer Seite darzustellen, fügen Sie einfach den folgenden Pluginaufruf ein:</p>
 <pre><code>{{{audio(&#39;DATEINAME&#39;)}}}</code></pre>
 <p><code>DATEINAME</code> muss ein Dateipfad (ohne Dateieerweiterung) relativ zum konfigurierten Media Ordner sein.</p>
-<p>Wenn Sie also zum Beispiel musik.mp3 und musik.ogg direkt im Media-Ordner abgelegt haben, verwenden Sie:</p>
-<pre><code>{{{audio(&#39;musik&#39;)}}}</code></pre>
+<p>Wenn Sie also zum Beispiel goldberg.mp3 und goldberg.ogg direkt im Media-Ordner abgelegt haben, verwenden Sie:</p>
+<pre><code>{{{audio(&#39;goldberg&#39;)}}}</code></pre>
 <p>Um einen Audio-Player auf allen Seiten darzustellen, fügen Sie einfach folgendes in Ihr Template ein:</p>
 <pre><code>&lt;?=audio(&#39;DATEINAME&#39;)?&gt;</code></pre>
 <p>Die automatische Wiedergabe (“Autoplay”) wird durch Hinzufügen des Arguments 1 zum Aufruf aktiviert:</p>
@@ -69,6 +72,18 @@
 <p>oder ohne Autoplay:</p>
 <p>. . . audio(‘DATEINAME’, 0, 1) . . .</p>
 <p>Beachten Sie, dass es möglich ist mehrere Audio-Player mit aktiviertem Autoplay auf einer Seite einzubinden, aber dass das i.d.R. nicht wünschenswert ist.</p>
+<h3 id="meta-daten">Meta-Daten</h3>
+<p>Sie können optional Meta-Daten für die Audio-Dateien bereits stellen, indem sie eine Datei <code>audio.csv</code> in den <code>content/</code> Ordner von CMSimple_XH hoch laden. Diese Datei muss im CSV-Format vorliegen (UTF-8 kodiert, durch Kommma getrennte Werte), und die folgenden Spalten enthalten (eine Kopfzeile ist optional):</p>
+<ol type="1">
+<li><code>id</code>: der Dateiname der Audio-Datei, wie im Pluginaufruf angegeben</li>
+<li><code>name</code>: der Name des Audios</li>
+<li><code>description</code>: die Beschreibung des Audios</li>
+</ol>
+<p>Ein <code>audio.csv</code> Beispiel (mit Kopfzeile):</p>
+<pre><code>ID,Name,Description
+goldberg,Goldberg-Variationen,&quot;Die Goldberg-Variationen sind ein Werk Johann Sebastian Bachs (BWV 988) für Cembalo. Im von Bach selbst veranlassten Erstdruck aus dem Jahr 1741 wurde es als Clavier Ubung bestehend in einer ARIA mit verschiedenen Verænderungen vors Clavicimbal mit 2 Manualen bezeichnet. Die Benennung nach Johann Gottlieb Goldberg entstand posthum aufgrund einer Anekdote.&quot;</code></pre>
+<p>Sie können einen Texteditor oder Ihre bevorzugte Tabellenkalkulation verwenden, um diese Datei zu erstellen und zu warten.</p>
+<p>Sind Meta-Daten für das Audio verfügbar, werden diese verwendet um <a href="https://en.wikipedia.org/wiki/Microdata_(HTML)">Microdata</a>, konform zu <a href="https://schema.org/AudioObject">schema.org AudioObjects</a>, zu generieren, was für Suchmaschinen nützlich ist. Weiterhin wird eine <code>&lt;figcaption&gt;</code> mit dem <code>name</code> oberhalb des Audio-Players eingefügt.</p>
 <h2 id="problembehebung">Problembehebung</h2>
 <p>Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf <a href="https://github.com/cmb69/audio_xh/issues">Github</a> oder im <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="lizenz">Lizenz</h2>

@@ -21,6 +21,8 @@
 
 namespace Audio;
 
+use Audio\Model\Meta;
+use Audio\Model\MetaRepo;
 use Plib\View;
 
 class AudioController
@@ -28,12 +30,16 @@ class AudioController
     /** @var string */
     private $mediaFolder;
 
+    /** @var MetaRepo */
+    private $metaRepo;
+
     /** @var View */
     private $view;
 
-    public function __construct(string $mediaFolder, View $view)
+    public function __construct(string $mediaFolder, MetaRepo $metaRepo, View $view)
     {
         $this->mediaFolder = $mediaFolder;
+        $this->metaRepo = $metaRepo;
         $this->view = $view;
     }
 
@@ -46,16 +52,18 @@ class AudioController
                 return $this->view->message("fail", "error_missing_file", $file);
             }
         }
-        return $this->renderView($filename, $autoplay, $loop);
+        $meta = $this->metaRepo->find($filename);
+        return $this->renderView($filename, $autoplay, $loop, $meta);
     }
 
-    private function renderView(string $filename, bool $autoplay, bool $loop): string
+    private function renderView(string $filename, bool $autoplay, bool $loop, ?Meta $meta): string
     {
         return $this->view->render("audio", [
             "filename" => $this->mediaFolder . $filename,
-            "displayname" => basename($filename),
+            "displayname" => $meta && $meta->name() ? $meta->name() : basename($filename),
             "autoplay" => $autoplay ? 'autoplay' : '',
             "loop" => $loop ? ' loop' : '',
+            "meta" => $meta,
         ]);
     }
 }

@@ -19,36 +19,36 @@
  * along with Audio_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Audio;
+namespace Audio\Model;
 
-use Audio\Model\MetaRepo;
-use Plib\SystemChecker;
-use Plib\View;
-
-class Dic
+class Meta
 {
-    public static function audioController(): AudioController
-    {
-        global $pth;
+    private const ID = 0;
+    private const NAME = 1;
+    private const DESCRIPTION = 2;
 
-        return new AudioController(
-            $pth["folder"]["media"],
-            new MetaRepo($pth["folder"]["content"]),
-            self::view()
-        );
+    /** @var list<string> */
+    private $record;
+
+    /** @param list<string> $record */
+    public function __construct($record)
+    {
+        $this->record = $record;
     }
 
-    public static function infoController(): InfoController
+    public function id(): string
     {
-        global $pth;
-
-        return new InfoController($pth["folder"]["plugins"] . "audio/", new SystemChecker(), self::view());
+        assert(isset($this->record[self::ID]));
+        return $this->record[self::ID];
     }
 
-    private static function view(): View
+    public function name(): string
     {
-        global $pth, $plugin_tx;
+        return $this->record[self::NAME] ?? "";
+    }
 
-        return new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
+    public function description(): string
+    {
+        return $this->record[self::DESCRIPTION] ?? "";
     }
 }
