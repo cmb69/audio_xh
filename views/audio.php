@@ -7,7 +7,8 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
 
 /**
  * @var View $this
- * @var string $filename
+ * @var array<string,string> $audios
+ * @var string $download
  * @var string $displayname
  * @var string $autoplay
  * @var string $loop
@@ -22,8 +23,9 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
   <figcaption><?=$this->esc($meta->name())?></figcaption>
 <?endif?>
   <audio controls="controls" title="<?=$this->esc($displayname)?>" <?=$this->esc($autoplay)?> <?=$this->esc($loop)?>>
-    <source src="<?=$this->esc($filename)?>.ogg" type="audio/ogg">
-    <source src="<?=$this->esc($filename)?>.mp3" type="audio/mpeg">
-    <a href="<?=$this->esc($filename)?>.mp3"><?=$this->esc($displayname)?></a>
+<?foreach ($audios as $mimetype => $filename):?>
+    <source src="<?=$this->esc($filename)?>" type="<?=$this->esc($mimetype)?>">
+<?endforeach?>
+    <a href="<?=$this->esc($download)?>"><?=$this->esc($displayname)?></a>
   </audio>
 </figure>

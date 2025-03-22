@@ -1,15 +1,17 @@
 # Audio_XH
 
 Audio_XH ermöglicht die Darstellung von Audio-Playern auf einer CMSimple_XH Website.
-Sie müssen eine MP3 und eine Ogg Vorbis Datei für jeden Player bereit stellen.
-Wenn der Browser des Besuchers das AUDIO element unterstützt,
-nutzt das Plugin dieses Feature, andernfalls wird ein Link zur MP3 Datei angezeigt.
-JavaScript wird nicht benötigt.
+Sie können mehrere Audioformate für jeden Player bereit stellen.
+Unterstützt der Browser des Besuchers das `<audio>` Element
+(das von allen wichtigen Browsern seit 2015 unterstüzt wird),
+und eines der angebotenen Audioformate, wird ein Audio-Player angezeigt.
+Andernfalls wird ein Download-Link angezeigt.
 
 - [Voraussetzungen](#voraussetzungen)
 - [Download](#download)
 - [Installation](#installation)
 - [Verwendung](#verwendung)
+  - [Audio-Formate](#audio-formate)
   - [Meta-Daten](#meta-daten)
 - [Problembehebung](#problembehebung)
 - [Lizenz](#lizenz)
@@ -47,9 +49,9 @@ Die Installation erfolgt wie bei vielen anderen CMSimple\_XH-Plugins auch.
 Da Audio_XH keine solche Möglichkeit anbietet, müssen Sie Ihre Audio-Dateien
 in den konfigurierten Media-Ordner per FTP, dem Filebrowser oder
 [Uploader_XH](https://github.com/cmb69/uploader_xh) hoch laden.
-Jede Audiodatei muss als MP3 (.mp3) *und* als Ogg Vorbis (.ogg) Version
-hoch geladen werden; beide Dateien müssen im selben Ordner sein und den selben
-Namen haben.
+Jedes Audio kann in mehreren Formaten hoch geladen werden;
+alle diese Dateien müssen im selben Ordner liegen,
+und den selben Basisnamen haben.
 
 Um einen Audio-Player auf einer Seite darzustellen, fügen Sie einfach den
 folgenden Pluginaufruf ein:
@@ -86,6 +88,24 @@ oder ohne Autoplay:
 Beachten Sie, dass es möglich ist mehrere Audio-Player mit aktiviertem
 Autoplay auf einer Seite einzubinden, aber dass das i.d.R. nicht wünschenswert
 ist.
+
+### Audio-Formate
+
+Audiodateien können in verschiedenen Formaten kodiert werden
+(die technischen Begriffe sind *Codec* und *Container*).
+Diese Formate haben ihre Vor- und Nachteile bezüglich
+Kompression/Qualität und Abspielunterstützung.
+Zur Zeit unterstützt Audio_XH die folgenden Formate:
+
+| Codec      | Container |
+|------------|-----------|
+| Opus       | .webm     |
+| AAC        | .m4a      |
+| Ogg Vorbis | .ogg      |
+| MP3        | .mp3      |
+
+Sie können beliebige von diesen zur Verfügung stellen,
+aber zumindest `.mp3` wird für beste Portabilität empfohlen.
 
 ### Meta-Daten
 

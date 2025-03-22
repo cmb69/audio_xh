@@ -19,37 +19,34 @@
  * along with Audio_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Audio;
+namespace Audio\Model;
 
-use Audio\Model\AudioRepo;
-use Audio\Model\MetaRepo;
-use Plib\SystemChecker;
-use Plib\View;
-
-class Dic
+class AudioRepo
 {
-    public static function audioController(): AudioController
-    {
-        global $pth;
+    /** @var string */
+    private $folder;
 
-        return new AudioController(
-            new AudioRepo($pth["folder"]["media"]),
-            new MetaRepo($pth["folder"]["content"]),
-            self::view()
-        );
+    public function __construct(string $folder)
+    {
+        $this->folder = $folder;
     }
 
-    public static function infoController(): InfoController
+    /** @return array<string,string> */
+    public function find(string $basename): array
     {
-        global $pth;
-
-        return new InfoController($pth["folder"]["plugins"] . "audio/", new SystemChecker(), self::view());
-    }
-
-    private static function view(): View
-    {
-        global $pth, $plugin_tx;
-
-        return new View($pth["folder"]["plugins"] . "audio/views/", $plugin_tx["audio"]);
+        $extensions = [
+            ".webm" => "audio/webm;codecs=opus",
+            ".m4a" => "audio/mp4",
+            ".ogg" => "audio/ogg; codecs=vorbis",
+            ".mp3" => "audio/mpeg",
+        ];
+        $res = [];
+        foreach ($extensions as $extension => $mimetype) {
+            $filename = $this->folder . $basename . $extension;
+            if (is_file($filename)) {
+                $res[$mimetype] = $filename;
+            }
+        }
+        return $res;
     }
 }

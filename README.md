@@ -1,15 +1,17 @@
 # Audio_XH
 
 Audio_XH facilitates the presentation of audio players on a CMSimple_XH website.
-You have to provide an MP3 and an Ogg Vorbis file for each player.
-If the browser of the visitor supports the AUDIO element,
-the plugin uses this feature, and offers a link to the MP3 file otherwise.
-JavaScript is not required.
+You can provide multiple audio format files for each player.
+If the browser of the visitor supports the `<audio>` element
+(which is supported by all major browsers since 2015)
+and one of the supplied audio formats, an audio player is displayed.
+Otherwise a download link is displayed.
 
 - [Requirements](#requirements)
 - [Download](#download)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Audio Formats](#audio-formats)
   - [Meta Data](#meta-data)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -47,8 +49,8 @@ The installation is done as with many other CMSimple_XH plugins.
 As Audio_XH provides no such facility, you have to upload your audio files to
 the configured media folder via FTP, the file browser or
 [Uploader_XH](https://github.com/cmb69/uploader_xh).
-Each audio file has to be uploaded as MP3 (.mp3) *and* Ogg Vorbis (.ogg) version;
-both files have to be in the same folder and have the same name.
+Each audio can be uploaded in multiple formats;
+all these files have to be in the same folder and have the same basename.
 
 To present an audio player on a page, just insert the following plugin call:
 
@@ -80,6 +82,24 @@ or without autoplay:
 
 Note, that it is possible to have multiple audio players with autoplay enabled
 on a single page, but it is usually not desired by your visitors.
+
+### Audio Formats
+
+Audio files can be encoded in different formats
+(the technical terms are *codec* and *container*).
+These formats have their pros and cons regarding
+compression/quality and playback support.
+Currently, Audio_XH supports the following formats:
+
+| Codec      | Container |
+|------------|-----------|
+| Opus       | .webm     |
+| AAC        | .m4a      |
+| Ogg Vorbis | .ogg      |
+| MP3        | .mp3      |
+
+You can provide any of these,
+but at least `.mp3` is recommended for best portability.
 
 ### Meta Data
 

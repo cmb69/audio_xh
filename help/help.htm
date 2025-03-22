@@ -30,13 +30,14 @@
 </head>
 <body>
 <h1 id="audio_xh">Audio_XH</h1>
-<p>Audio_XH facilitates the presentation of audio players on a CMSimple_XH website. You have to provide an MP3 and an Ogg Vorbis file for each player. If the browser of the visitor supports the AUDIO element, the plugin uses this feature, and offers a link to the MP3 file otherwise. JavaScript is not required.</p>
+<p>Audio_XH facilitates the presentation of audio players on a CMSimple_XH website. You can provide multiple audio format files for each player. If the browser of the visitor supports the <code>&lt;audio&gt;</code> element (which is supported by all major browsers since 2015) and one of the supplied audio formats, an audio player is displayed. Otherwise a download link is displayed.</p>
 <ul>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a>
 <ul>
+<li><a href="#audio-formats">Audio Formats</a></li>
 <li><a href="#meta-data">Meta Data</a></li>
 </ul></li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
@@ -57,7 +58,7 @@
    to check if all requirements are fulfilled. --></li>
 </ol>
 <h2 id="usage">Usage</h2>
-<p>As Audio_XH provides no such facility, you have to upload your audio files to the configured media folder via FTP, the file browser or <a href="https://github.com/cmb69/uploader_xh">Uploader_XH</a>. Each audio file has to be uploaded as MP3 (.mp3) <em>and</em> Ogg Vorbis (.ogg) version; both files have to be in the same folder and have the same name.</p>
+<p>As Audio_XH provides no such facility, you have to upload your audio files to the configured media folder via FTP, the file browser or <a href="https://github.com/cmb69/uploader_xh">Uploader_XH</a>. Each audio can be uploaded in multiple formats; all these files have to be in the same folder and have the same basename.</p>
 <p>To present an audio player on a page, just insert the following plugin call:</p>
 <pre><code>{{{audio(&#39;FILENAME&#39;)}}}</code></pre>
 <p><code>FILENAME</code> has to be a file path (without file extension) relative to the configured media folder.</p>
@@ -72,6 +73,35 @@
 <p>or without autoplay:</p>
 <pre><code>. . . audio(&#39;FILENAME&#39;, 0, 1); . . .</code></pre>
 <p>Note, that it is possible to have multiple audio players with autoplay enabled on a single page, but it is usually not desired by your visitors.</p>
+<h3 id="audio-formats">Audio Formats</h3>
+<p>Audio files can be encoded in different formats (the technical terms are <em>codec</em> and <em>container</em>). These formats have their pros and cons regarding compression/quality and playback support. Currently, Audio_XH supports the following formats:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Codec</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Opus</td>
+<td>.webm</td>
+</tr>
+<tr class="even">
+<td>AAC</td>
+<td>.m4a</td>
+</tr>
+<tr class="odd">
+<td>Ogg Vorbis</td>
+<td>.ogg</td>
+</tr>
+<tr class="even">
+<td>MP3</td>
+<td>.mp3</td>
+</tr>
+</tbody>
+</table>
+<p>You can provide any of these, but at least <code>.mp3</code> is recommended for best portability.</p>
 <h3 id="meta-data">Meta Data</h3>
 <p>You can optionally provide meta data for the audio files by manually uploading a file <code>audio.csv</code> into the <code>content/</code> folder of CMSimple_XH. This file must be a proper CSV file (UTF-8 encoded, comma separated values), and contain the following columns (a header line is optional):</p>
 <ol type="1">

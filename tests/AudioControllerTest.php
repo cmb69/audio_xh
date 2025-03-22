@@ -4,6 +4,7 @@ namespace Audio;
 
 use ApprovalTests\Approvals;
 use Audio\Infra\CsvFile;
+use Audio\Model\AudioRepo;
 use Audio\Model\MetaRepo;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
@@ -26,10 +27,23 @@ class AudioControllerTest extends TestCase
         mkdir(vfsStream::url("root/content"));
         file_put_contents(vfsStream::url("root/content/audio.csv"), "goldberg,Goldberg Variations,\"$description\"");
         $sut = new AudioController(
-            vfsStream::url("root/userfiles/media/"),
+            new AudioRepo(vfsStream::url("root/userfiles/media/")),
             new MetaRepo(vfsStream::url("root/content/")),
             new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["audio"])
         );
         Approvals::verifyHtml($sut->defaultAction("goldberg", false, false));
+    }
+
+    public function testWarnsIfAudioFilesAreMissing(): void
+    {
+        vfsStream::setup("root");
+        mkdir(vfsStream::url("root/userfiles/media"), 0777, true);
+        mkdir(vfsStream::url("root/content"));
+        $sut = new AudioController(
+            new AudioRepo(vfsStream::url("root/userfiles/media/")),
+            new MetaRepo(vfsStream::url("root/content/")),
+            new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["audio"])
+        );
+        $this->assertStringContainsString("File goldberg is missing!", $sut->defaultAction("goldberg", false, false));
     }
 }

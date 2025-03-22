@@ -21,14 +21,15 @@
 
 namespace Audio;
 
+use Audio\Model\AudioRepo;
 use Audio\Model\Meta;
 use Audio\Model\MetaRepo;
 use Plib\View;
 
 class AudioController
 {
-    /** @var string */
-    private $mediaFolder;
+    /** @var AudioRepo */
+    private $audioRepo;
 
     /** @var MetaRepo */
     private $metaRepo;
@@ -36,30 +37,23 @@ class AudioController
     /** @var View */
     private $view;
 
-    public function __construct(string $mediaFolder, MetaRepo $metaRepo, View $view)
+    public function __construct(AudioRepo $audioRepo, MetaRepo $metaRepo, View $view)
     {
-        $this->mediaFolder = $mediaFolder;
+        $this->audioRepo = $audioRepo;
         $this->metaRepo = $metaRepo;
         $this->view = $view;
     }
 
     public function defaultAction(string $filename, bool $autoplay, bool $loop): string
     {
-        $extensions = array('.ogg', '.mp3');
-        foreach ($extensions as $extension) {
-            $file = $this->mediaFolder . $filename . $extension;
-            if (!file_exists($file)) {
-                return $this->view->message("fail", "error_missing_file", $file);
-            }
+        $audios = $this->audioRepo->find($filename);
+        if (empty($audios)) {
+            return $this->view->message("fail", "error_missing_file", $filename);
         }
         $meta = $this->metaRepo->find($filename);
-        return $this->renderView($filename, $autoplay, $loop, $meta);
-    }
-
-    private function renderView(string $filename, bool $autoplay, bool $loop, ?Meta $meta): string
-    {
         return $this->view->render("audio", [
-            "filename" => $this->mediaFolder . $filename,
+            "audios" => $audios,
+            "download" => end($audios),
             "displayname" => $meta && $meta->name() ? $meta->name() : basename($filename),
             "autoplay" => $autoplay ? 'autoplay' : '',
             "loop" => $loop ? ' loop' : '',
