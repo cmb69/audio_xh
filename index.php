@@ -21,7 +21,7 @@
 
 use Audio\Dic;
 
-const AUDIO_VERSION = "1beta4";
+const AUDIO_VERSION = "1.0";
 
 function audio(string $filename, bool $autoplay = false, bool $loop = false): string
 {

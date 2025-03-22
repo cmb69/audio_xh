@@ -17,7 +17,7 @@ class InfoControllerTest extends TestCase
             new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["audio"])
         );
         $response = $sut();
-        $this->assertSame("Audio 1beta4", $response->title());
+        $this->assertSame("Audio 1.0", $response->title());
         Approvals::verifyHtml($response->output());
     }
 }
